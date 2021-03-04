@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 20:20:00 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:20:00 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/04 16:36:13 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/04 16:36:15 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void					get_pixel(t_cub *cub, int fd)
 		i -= 2 * cub->width;
 	}
 	close(fd);
-	// free_all(cub);
-	exit(0);
+	ft_exit(cub);
 }
 
 void					bmp_info(t_cub *cub, int fd)

@@ -44,7 +44,10 @@ int						turn_off(int key, void *arg)
 
 	cub = arg;
 	if (key == ESC)
+	{
+		ft_freeleak(cub);
 		exit(0);
+	}
 	else
 	{
 		cub->pressed_key = key;

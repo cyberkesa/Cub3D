@@ -6,7 +6,7 @@
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:44:12 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/01/22 15:44:14 by vwinfred         ###   ########.fr       */
+/*   Updated: 2021/03/03 22:16:41 by bmicheal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct				s_textures
 	char					*path;
 	void					*image_data;
 	void					*image_ptr;
-	int						*data;
 	int						size_line;
 	int						endian;
 	int						width;
@@ -107,7 +106,6 @@ typedef	struct				s_spr
 
 typedef	struct				s_ray
 {
-	double					*ray_length;
 	double					dir_x;
 	double					dir_y;
 	double					plane_x;
@@ -125,7 +123,6 @@ typedef	struct				s_ray
 	int						x_int;
 	int						y_int;
 	int						color;
-	int						init;
 }							t_ray;
 
 typedef	struct				s_cub
@@ -139,13 +136,10 @@ typedef	struct				s_cub
 	t_sprites				*sprites;
 	char					**map;
 	double					*sp_dist;
-	double					perp_for_sprites[32442];
+	double					*perp_for_sprites;
 	int						*sp_order;
-	int						sprites_num;
-	int						*buf[84358];
 	int						*image_data;
 	void					*mlx;
-	void					*addr;
 	void					*cub_win_ptr;
 	void					*image;
 	double					fov;
@@ -190,13 +184,11 @@ int							draw(t_cub *cub);
 int							turn_on(int key, void *arg);
 int							turn_off(int key, void *arg);
 int							check_nswe(t_cub *cub, char *line);
-int							check_keys(t_cub *cub);
 int							parse_color(char *line, t_cub *cub);
 void						parce_number_line(t_cub *cub,
 							int fd_for_number_line);
 void						parce_ceiling_color(char *line, t_cub *cub);
 void						parce_floor_color(char *line, t_cub *cub);
-void						parse_texture(char *mapcub, t_cub *win);
 void						general_parce(t_cub *cub, int fd);
 void						parce_r(char *mapcub, t_cub *win);
 void						parce_map(t_cub *cub, char *line);
@@ -208,34 +200,17 @@ void						parce_s(char *line, t_cub *cub);
 void						nswe(t_cub *cub);
 void						ft_freeleak(t_cub *win);
 void						free_array(char **r);
-void						free_map(t_cub *cub);
 void						mlx_start(t_cub *cub);
-void						set_nswe_config_dir(t_cub *cub, double x, double y);
-void						set_nswe_config_plane(t_cub *cub,
-							double x, double y);
-void						draw_vertical_line(t_cub *cub,
-							int x, int y, int size, int color);
-void						draw_horizontal_line(t_cub *cub,
-							int x, int y, int size, int color);
-void						draw_square(t_cub *cub,
-							int x, int y, int size, int color);
 void						draw_background(t_cub *cub);
 void						draw_sprites(t_cub *cub);
-void						draw_player(t_cub *cub);
-void						draw_map(t_cub *cub);
 void						set_pixel(t_cub *cub, int x, int y, int color);
-void						bresenhem(t_cub *cub,
-							int x1, int y1, int x2, int y2, int color);
 void						get_sprite_val(t_cub *cub);
 void						parce_struct_sprites(t_cub *cub);
-void						make_struct_sprites(t_cub *cub,
-							long x, long y, long val);
 void						ray_cast(t_cub *cub);
 void						turn(t_cub *cub, double cos, double sin);
 void						move_speed(t_cub *cub);
 void						return_error(char *error, t_cub *cub);
 void						press(t_cub *cub);
-void						check_sprite(t_cub *cub, char *line);
 void						check_wall(t_cub *cub, int x, int y);
 void						check_map_validate(t_cub *cub);
 void						check_map_closed(t_cub *cub);

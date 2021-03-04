@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 15:47:14 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:18:32 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/04 16:35:04 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/04 16:35:05 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,27 @@ void					parce_and_check(t_cub *cub,
 	parce_struct_sprites(cub);
 }
 
-void					return_error(char *error, t_cub *cub)
+void					init_bm(t_cub *cub)
 {
-	int					len;
+	int					i;
 
-	len = (int)ft_strlen(error);
-	write(1, error, len);
-	ft_exit(cub);
-}
-
-int						ft_exit(t_cub *cub)
-{
-	ft_freeleak(cub);
-	if (cub->image)
-		mlx_destroy_image(cub->mlx, cub->image);
-	if (cub->cub_win_ptr)
-		mlx_destroy_window(cub->mlx, cub->cub_win_ptr);
-	exit(0);
-	return (0);
+	i = 0;
+	while (i < 5)
+	{
+		cub->tex[i].image_data = NULL;
+		cub->tex[i].image_ptr = NULL;
+		cub->tex[i].path = NULL;
+		i++;
+	}
+	cub->sprites = NULL;
+	cub->map = NULL;
+	cub->sp_dist = NULL;
+	cub->perp_for_sprites = NULL;
+	cub->sp_order = NULL;
+	cub->image_data = NULL;
+	cub->mlx = NULL;
+	cub->cub_win_ptr = NULL;
+	cub->image = NULL;
 }
 
 int						main(int argc, char **argv)
@@ -75,6 +78,7 @@ int						main(int argc, char **argv)
 	int					fd_for_number_line;
 	int					fd;
 
+	init_bm(&cub);
 	if (!argv[1])
 		return_error("Error argv.\n", &cub);
 	ft_bzero(&cub, sizeof(t_cub));
@@ -84,6 +88,7 @@ int						main(int argc, char **argv)
 	if (fd_for_number_line < 0 || fd < 0)
 		return_error("Error argv.\n", &cub);
 	parce_and_check(&cub, fd_for_number_line, fd);
+	close(fd);
 	cub.mlx = mlx_init();
 	cub.cub_win_ptr = mlx_new_window(cub.mlx, cub.width, cub.height, "Cub3D");
 	mlx_start(&cub);
@@ -91,7 +96,5 @@ int						main(int argc, char **argv)
 	if (cub.flags.screen == 1)
 		bmp_header(&cub);
 	mlx_hl(&cub);
-	close(fd);
-	ft_exit(&cub);
 	return (0);
 }

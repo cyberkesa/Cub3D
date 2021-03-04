@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 21:47:48 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/03/03 21:47:49 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/04 16:35:19 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/04 16:35:20 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void					allocate_sprites(t_cub *cub)
 	* (cub->val_sprites + 1));
 	cub->sp_order = malloc(sizeof(int) * cub->val_sprites);
 	cub->sp_dist = malloc(sizeof(double) * cub->val_sprites);
-	// cub->perp_for_sprites = malloc(sizeof(int) * cub->val_sprites);
-	// cub->buf = malloc(sizeof(void *) * cub->val_sprites);
+	cub->perp_for_sprites = malloc(sizeof(double) * cub->width + 1);
 	if (!cub->sprites)
 		exit(-1);
 }

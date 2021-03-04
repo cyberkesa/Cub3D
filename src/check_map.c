@@ -82,7 +82,7 @@ void					check_wall(t_cub *cub, int x, int y)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-		return_error("Error! Map bad closed\n", cub);
+		return_error("Error! Map bad closed.\n", cub);
 	return ;
 }
 

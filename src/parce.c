@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 15:47:32 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/01/29 15:47:33 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/04 16:35:48 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/04 16:35:49 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void					general_parce(t_cub *cub, int fd)
 		else
 			free(line);
 	}
+	free(line);
 	if (cub->flags.parce_map_start == 0)
 		return_error("Error! Where map?\n", cub);
 }

@@ -62,7 +62,6 @@ void					get_sprite_val(t_cub *cub)
 	y = 0;
 	while (x < cub->map_number_line && cub->map[x])
 	{
-		printf("%lu\n", cub->val_sprites);
 		while (cub->map[x][y])
 		{
 			if (cub->map[x][y] == '2')

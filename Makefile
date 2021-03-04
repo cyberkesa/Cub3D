@@ -46,7 +46,6 @@ INCLUDES = -I inc/ -I Libft/
 
 
 CFLAGS = -O2 -Wall -Werror -Wextra
-SEGFLAG = -fsanitize=address
 
 MINILIBFLAGS = -framework OpenGL -framework AppKit -lmlx
 
@@ -56,7 +55,7 @@ all: $(NAME)
 
 $(NAME):: $(LIBFT) $(OBJD)
 $(NAME):: $(OBJECTS)
-	@$(CC) $(CFLAGS) $(SEGFLAG) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
+	@$(CC) $(CFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
 	@printf "\x1b[7m Create: "
 	@printf $@
 	@printf "\x1b[7m\n"
@@ -65,7 +64,7 @@ $(LIBFT):
 	@make -C ./Libft
 
 $(OBJD)%.o: $(SRCD)%.c
-	@$(CC) $(CFLAGS) $(SEGFLAG) $(INCLUDES) -c $< -o $@ -g
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@printf "\x1b[2m\x1b[m Compile object: "
 	@printf $(notdir $@)
 	@printf "\x0b\n"

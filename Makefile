@@ -45,8 +45,8 @@ OBJECTS =	$(addprefix $(OBJD), $(patsubst %.c, %.o, $(SRS)))
 INCLUDES = -I inc/ -I Libft/
 
 
-CFLAGS = -O3 -Wall -Werror -Wextra
-# SEGFLAG = -fsanitize=address
+CFLAGS = -O2 -Wall -Werror -Wextra
+SEGFLAG = -fsanitize=address
 
 MINILIBFLAGS = -framework OpenGL -framework AppKit -lmlx
 

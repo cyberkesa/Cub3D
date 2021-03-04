@@ -43,9 +43,29 @@ void					check_valid_color(char *rgb, t_cub *cub)
 	int					i;
 
 	i = 0;
+	if (rgb[i] == '-')
+		return_error("Error! Not valide color.\n", cub);
 	while (rgb[i++])
 		if (ft_isalpha(rgb[i]))
 			return_error("Error! Not valide color.\n", cub);
+}
+
+void					check_one_more_null(int color, char *rgb, t_cub *cub)
+{
+	int					nbr_null;
+	int					i;
+
+	i = 0;
+	nbr_null = 0;
+	while (rgb[i++])
+		if (rgb[i] == '0')
+			nbr_null++;
+	if (nbr_null == 2 && color == 100)
+		return ;
+	if (nbr_null == 2 && color == 200)
+		return ;
+	if (nbr_null >= 2)
+		return_error("Error! Not valide color.\n", cub);
 }
 
 int						parse_color(char *line, t_cub *cub)
@@ -64,6 +84,9 @@ int						parse_color(char *line, t_cub *cub)
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
+	check_one_more_null(r, rgb[0], cub);
+	check_one_more_null(g, rgb[1], cub);
+	check_one_more_null(b, rgb[2], cub);
 	free_array(rgb);
 	free(line);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))

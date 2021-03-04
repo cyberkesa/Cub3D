@@ -24,6 +24,8 @@ void					make_texture_pixel_array(t_cub *cub, int num)
 	}
 	if (cub->tex[num].path != NULL)
 	{
+		if (num == 4)
+			cub->flags.texture_okey = 1;
 		cub->tex[num].image_ptr = mlx_xpm_file_to_image(cub->mlx,
 		cub->tex[num].path, &cub->tex[num].width, &cub->tex[num].height);
 		if (cub->tex[num].image_ptr == NULL)

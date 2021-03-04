@@ -61,6 +61,8 @@ typedef struct				s_flags
 {
 	bool					screen;
 	bool					parce_map_start;
+	bool					sprites_in_map;
+	bool					texture_okey;
 }							t_flags;
 
 typedef struct				s_plr
@@ -249,5 +251,8 @@ void						color_sprite(t_cub *cub);
 void						draw_sprites(t_cub *cub);
 void						ray_sprites(t_cub *cub);
 void						check_valide_pos_sprite(t_cub *cub, int x, int y);
+void						ft_free_more(t_cub *cub);
+void						check_one_more_null(int color,
+							char *rgb, t_cub *cub);
 
 #endif

@@ -43,6 +43,7 @@ void					allocate_sprites(t_cub *cub)
 {
 	cub->sp_order = NULL;
 	cub->sp_dist = NULL;
+	cub->flags.sprites_in_map = 1;
 	cub->sprites = (t_sprites *)malloc(sizeof(t_sprites)
 	* (cub->val_sprites + 1));
 	cub->sp_order = malloc(sizeof(int) * cub->val_sprites);
@@ -61,6 +62,7 @@ void					get_sprite_val(t_cub *cub)
 	y = 0;
 	while (x < cub->map_number_line && cub->map[x])
 	{
+		printf("%lu\n", cub->val_sprites);
 		while (cub->map[x][y])
 		{
 			if (cub->map[x][y] == '2')

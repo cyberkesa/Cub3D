@@ -39,20 +39,6 @@ void					parce_struct_sprites(t_cub *cub)
 	}
 }
 
-void					allocate_sprites(t_cub *cub)
-{
-	cub->sp_order = NULL;
-	cub->sp_dist = NULL;
-	cub->flags.sprites_in_map = 1;
-	cub->sprites = (t_sprites *)malloc(sizeof(t_sprites)
-	* (cub->val_sprites + 1));
-	cub->sp_order = malloc(sizeof(int) * cub->val_sprites);
-	cub->sp_dist = malloc(sizeof(double) * cub->val_sprites);
-	cub->perp_for_sprites = malloc(sizeof(double) * cub->width + 1);
-	if (!cub->sprites)
-		exit(-1);
-}
-
 void					get_sprite_val(t_cub *cub)
 {
 	int					x;
@@ -71,5 +57,18 @@ void					get_sprite_val(t_cub *cub)
 		y = 0;
 		x++;
 	}
-	allocate_sprites(cub);
+}
+
+void					check_valide_pos_sprite(t_cub *cub, int x, int y)
+{
+	if ((cub->map[x][y + 1] == ' ' || cub->map[x][y + 1] == '\0')
+	|| (cub->map[x][y - 1] == ' ' || cub->map[x][y - 1] == '\0')
+	|| (cub->map[x - 1][y] == ' ' || cub->map[x - 1][y] == '\0')
+	|| (cub->map[x + 1][y] == ' ' || cub->map[x + 1][y] == '\0')
+	|| (cub->map[x + 1][y + 1] == ' ' || cub->map[x + 1][y + 1] == '\0')
+	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
+	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
+	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
+		return_error("Error! Sprite not in map.\n", cub);
+	return ;
 }

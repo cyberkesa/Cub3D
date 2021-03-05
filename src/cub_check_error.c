@@ -32,17 +32,17 @@ void					check_keys_true(t_cub *cub)
 	|| cub->tex[2].path == NULL
 	|| cub->tex[3].path == NULL
 	|| cub->tex[4].path == NULL
-	|| (!(cub->ceiling_color >= 0))
-	|| (!(cub->floor_color >= 0))
+	|| (cub->flags.ceiling_color_ok == 0)
+	|| (cub->flags.floor_color_ok == 0)
 	|| (!cub->width || !cub->height))
-		return_error("Error! Keys in map.cub.\n", cub);
+		error_map_tex_color("Error! Keys in map.cub.\n", cub);
 }
 
 void					nswe(t_cub *cub)
 {
 	cub->fov = ((double)cub->width / (double)cub->height) / 2.4;
 	if (cub->plr.nswe == 0)
-		return_error("Error! Where player?\n", cub);
+		error_map_tex_color("Error! Where player?\n", cub);
 	if (cub->plr.nswe == 'N')
 	{
 		cub->ray.dir_y = -1;

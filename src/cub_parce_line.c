@@ -14,50 +14,55 @@
 
 void					parce_no(char *line, t_cub *cub)
 {
-	static int			no = 0;
-
-	cub->tex[1].path = ft_strtrim(line + 2, " ");
-	no++;
-	if (no > 1)
-		return_error("Error texture NO.\n", cub);
+	if (cub->flags.tex_no == 0)
+	{
+		cub->tex[1].path = ft_strtrim(line + 2, " ");
+		cub->flags.tex_no = 1;
+	}
+	else
+		re_free_map_and_tex("Error! Doubles texture NO.\n", cub);
 }
 
 void					parce_so(char *line, t_cub *cub)
 {
-	static int			so = 0;
-
-	cub->tex[0].path = ft_strtrim(line + 2, " ");
-	so++;
-	if (so > 1)
-		return_error("Error texture SO.\n", cub);
+	if (cub->flags.tex_so == 0)
+	{
+		cub->tex[0].path = ft_strtrim(line + 2, " ");
+		cub->flags.tex_so = 1;
+	}
+	else
+		re_free_map_and_tex("Error! Doubles texture SO.\n", cub);
 }
 
 void					parce_we(char *line, t_cub *cub)
 {
-	static int			we = 0;
-
-	cub->tex[3].path = ft_strtrim(line + 2, " ");
-	we++;
-	if (we > 1)
-		return_error("Error texture WE.\n", cub);
+	if (cub->flags.tex_we == 0)
+	{
+		cub->tex[3].path = ft_strtrim(line + 2, " ");
+		cub->flags.tex_we = 1;
+	}
+	else
+		re_free_map_and_tex("Error! Doubles texture WE.\n", cub);
 }
 
 void					parce_ea(char *line, t_cub *cub)
 {
-	static int			ea = 0;
-
-	cub->tex[2].path = ft_strtrim(line + 2, " ");
-	ea++;
-	if (ea > 1)
-		return_error("Error texture EA.\n", cub);
+	if (cub->flags.tex_ea == 0)
+	{
+		cub->tex[2].path = ft_strtrim(line + 2, " ");
+		cub->flags.tex_ea = 1;
+	}
+	else
+		re_free_map_and_tex("Error! Doubles texture EA.\n", cub);
 }
 
 void					parce_s(char *line, t_cub *cub)
 {
-	static int			s = 0;
-
-	cub->tex[4].path = ft_strtrim(line + 1, " ");
-	s++;
-	if (s > 1)
-		return_error("Error texture S.\n", cub);
+	if (cub->flags.tex_s == 0)
+	{
+		cub->tex[4].path = ft_strtrim(line + 1, " ");
+		cub->flags.tex_s = 1;
+	}
+	else
+		re_free_map_and_tex("Error! Doubles texture S.\n", cub);
 }

@@ -61,10 +61,14 @@ typedef struct				s_flags
 {
 	bool					screen;
 	bool					parce_map_start;
-	bool					sprites_in_map;
 	bool					texture_okey;
 	bool					ceiling_color_ok;
 	bool					floor_color_ok;
+	bool					tex_no;
+	bool					tex_so;
+	bool					tex_ea;
+	bool					tex_we;
+	bool					tex_s;
 }							t_flags;
 
 typedef struct				s_plr
@@ -151,6 +155,8 @@ typedef	struct				s_cub
 	double					wall_x;
 	double					tex_pos;
 	double					step;
+	int						fd;
+	int						fd_for_number_line;
 	int						image_line;
 	int						image_size;
 	int						size_line;
@@ -181,7 +187,7 @@ typedef	struct				s_cub
 }							t_cub;
 
 int							main(int argc, char **argv);
-void						valid_argc(int argc, char **argv, t_cub *cub);
+void						check_valid_argc(int argc, char **argv, t_cub *cub);
 int							ft_exit(t_cub *cub);
 int							tex_keys(t_cub *cub);
 int							draw(t_cub *cub);
@@ -189,12 +195,11 @@ int							turn_on(int key, void *arg);
 int							turn_off(int key, void *arg);
 int							check_nswe(t_cub *cub, char *line);
 int							parse_color(char *line, t_cub *cub);
-void						parce_number_line(t_cub *cub,
-							int fd_for_number_line);
+void						parce_number_line(t_cub *cub);
 void						parce_ceiling_color(char *line, t_cub *cub);
 void						parce_floor_color(char *line, t_cub *cub);
-void						general_parce(t_cub *cub, int fd);
-void						parce_r(char *mapcub, t_cub *win);
+void						general_parce(t_cub *cub);
+void						parce_r(char *line, t_cub *cub);
 void						parce_map(t_cub *cub, char *line);
 void						parce_no(char *line, t_cub *cub);
 void						parce_so(char *line, t_cub *cub);
@@ -236,8 +241,7 @@ void						bmp_info(t_cub *cub, int fd);
 void						get_pixel(t_cub *cub, int fd);
 void						bmp_header(t_cub *cub);
 void						mlx_hl(t_cub *cub);
-void						parce_and_check(t_cub *cub,
-							int fd_for_number_line, int fd);
+void						parce_and_check(t_cub *cub);
 void						move_turn(t_cub *cub, double cos, double sin);
 void						move_right_and_left(t_cub *cub, int init);
 void						move_forth_and_back(t_cub *cub, int init);
@@ -254,5 +258,21 @@ void						check_valide_pos_sprite(t_cub *cub, int x, int y);
 void						ft_free_more(t_cub *cub);
 void						check_one_more_null(int color,
 							char *rgb, t_cub *cub);
+void						null_all_pointer(t_cub *cub);
+void						cub_allocate_sprites(t_cub *cub);
+void						cub_allocate_map(t_cub *cub);
+int							cub_args_and_fd(t_cub *cub, int argc, char **argv);
+
+void						re_exit_mlx_clean_all(char *error, t_cub *cub);
+void						re_free_only_map(char *error, t_cub *cub);
+void						re_free_map_tex_and_sprites(char *error, t_cub *cub);
+void						error_map_tex_fd(char *error, t_cub *cub);
+void						re_free_map_and_tex(char *error, t_cub *cub);
+void						error_map_tex_fd_color(char *error, t_cub *cub);
+void						error_map_tex_color(char *error, t_cub *cub);
+void						re_no_free(char *error, t_cub *cub);
+
+
+
 
 #endif

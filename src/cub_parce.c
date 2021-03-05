@@ -35,7 +35,7 @@ void					parce_map(t_cub *cub, char *line)
 	if (nswe != -1)
 	{
 		if (doubles_nswe != 0)
-			return_error("Error! N, S, W, E doubles.\n", cub);
+			error_map_tex_fd("Error! N, S, W, E doubles.\n", cub);
 		cub->plr.x = nswe;
 		cub->plr.y = number_line;
 		cub->plr.nswe = line[nswe];
@@ -55,7 +55,7 @@ void					check_valid_line(char *line, t_cub *cub)
 	|| (line[0] == '1' || line[0] == ' ') || (line[0] == 0))
 		return ;
 	else
-		return_error("Error! Not valide symbol in map.cub.\n", cub);
+		error_map_tex_fd("Error! Not valide symbol in map.cub.\n", cub);
 }
 
 void					check_line(char *line, t_cub *cub)
@@ -78,20 +78,20 @@ void					check_line(char *line, t_cub *cub)
 		parce_ceiling_color(line, cub);
 }
 
-void					general_parce(t_cub *cub, int fd)
+void					general_parce(t_cub *cub)
 {
 	char				*line;
 
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(cub->fd, &line) == 1)
 	{
 		check_valid_line(line, cub);
 		if (line[0] == '0')
-			return_error("Error! Not valide symbol in map.cub.\n", cub);
+			error_map_tex_fd("Error! Not valide symbol in map.cub.\n", cub);
 		check_line(line, cub);
 		if (line[0] == '\0' && cub->flags.parce_map_start == 1)
-			return_error("Error! Not valide symbol in map.cub.\n", cub);
+			error_map_tex_fd("Error! Not valide symbol in map.cub.\n", cub);
 		if ((line[0] == '1' && !(tex_keys(cub) == 1)))
-			return_error("Error! Not valide symbol in map.cub.\n", cub);
+			error_map_tex_fd("Error! Not valide symbol in map.cub.\n", cub);
 		if ((line[0] == '1' || line[0] == ' ') && tex_keys(cub) == 1)
 			parce_map(cub, line);
 		else
@@ -99,5 +99,6 @@ void					general_parce(t_cub *cub, int fd)
 	}
 	free(line);
 	if (cub->flags.parce_map_start == 0)
-		return_error("Error! Where map?\n", cub);
+		error_map_tex_fd("Error! Where map?\n", cub);
+	close (cub->fd);
 }

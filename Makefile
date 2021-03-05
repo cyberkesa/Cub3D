@@ -18,7 +18,6 @@ OBJD = objects/
 
 SRS =	main.c \
 		cub_parce.c \
-		cub_parce_number_line.c \
 		cub_parce_line.c \
 		cub_parce_keys.c \
 		cub_parce_color.c \
@@ -26,8 +25,10 @@ SRS =	main.c \
 		cub_check_map.c \
 		cub_check_map_1.c \
 		cub_parce_check_sprites.c \
+		cub_args_number_line.c \
 		cub_make_texture.c \
 		cub_mlx.c \
+		cub_allocate_memory.c \
 		cub_drawing.c \
 		cub_sprites.c \
 		cub_raycast.c \
@@ -36,6 +37,8 @@ SRS =	main.c \
 		cub_player_move.c \
 		cub_keyboard.c \
 		cub_clean.c \
+		cub_returnes.c \
+		cub_utils.c \
 		cub_screen.c
 
 SRCD = src/

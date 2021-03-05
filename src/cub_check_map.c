@@ -21,7 +21,7 @@ void					check_first_line(char *line, t_cub *cub)
 	{
 		if (line[i] == '0' || line[i] == 'N' || line[i] == 'S'
 		|| line[i] == 'W' || line[i] == 'E' || line[i] == '2')
-			return_error("Error first line!\n", cub);
+			error_map_tex_fd("Error first line!\n", cub);
 		i++;
 	}
 }
@@ -40,7 +40,7 @@ void					check_last_line(t_cub *cub)
 		|| cub->map[x][i] == 'S'
 		|| cub->map[x][i] == 'W'
 		|| cub->map[x][i] == 'E')
-			return_error("Error last line!\n", cub);
+			error_map_tex_fd("Error last line!\n", cub);
 		i++;
 	}
 }
@@ -60,7 +60,7 @@ int						check_nswe(t_cub *cub, char *line)
 		i++;
 	}
 	if (a > 1)
-		return_error("Error! Not valide number of player.\n", cub);
+		error_map_tex_fd("Error! Not valide number of player.\n", cub);
 	i = 0;
 	while (line[i])
 	{
@@ -82,7 +82,7 @@ void					check_wall(t_cub *cub, int x, int y)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-		return_error("Error! Map bad closed.\n", cub);
+		error_map_tex_color("Error! Map bad closed.\n", cub);
 	return ;
 }
 

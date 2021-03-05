@@ -14,26 +14,26 @@
 
 void					parce_ceiling_color(char *line, t_cub *cub)
 {
-	static	int			i = 0;
-
-	check_two_commas(line, cub);
-	cub->ceiling_color = parse_color(ft_strtrim(line, "C "), cub);
-	cub->flags.ceiling_color_ok = 1;
-	i++;
-	if (i > 1)
-		return_error("Error! Color's doubles.\n", cub);
+	if (cub->flags.ceiling_color_ok == 0)
+	{
+		check_two_commas(line, cub);
+		cub->ceiling_color = parse_color(ft_strtrim(line, "C "), cub);
+		cub->flags.ceiling_color_ok = 1;
+	}
+	else
+		error_map_tex_fd_color("Error! Color's doubles.\n", cub);
 }
 
 void					parce_floor_color(char *line, t_cub *cub)
 {
-	static	int			i = 0;
-
-	check_two_commas(line, cub);
-	cub->floor_color = parse_color(ft_strtrim(line, "F "), cub);
-	cub->flags.floor_color_ok = 1;
-	i++;
-	if (i > 1)
-		return_error("Error! Color's doubles.\n", cub);
+	if (cub->flags.floor_color_ok == 0)
+	{
+		check_two_commas(line, cub);
+		cub->floor_color = parse_color(ft_strtrim(line, "F "), cub);
+		cub->flags.floor_color_ok = 1;
+	}
+	else
+		error_map_tex_fd_color("Error! Color's doubles.\n", cub);
 }
 
 void					check_two_commas(char *line, t_cub *cub)
@@ -50,6 +50,6 @@ void					check_two_commas(char *line, t_cub *cub)
 		i++;
 	}
 	if (a != 2)
-		return_error("Error! Commas troubles.\n", cub);
+		error_map_tex_fd_color("Error! Commas troubles.\n", cub);
 	return ;
 }

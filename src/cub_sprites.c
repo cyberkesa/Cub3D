@@ -12,19 +12,6 @@
 
 #include "cub.h"
 
-void					check_valide_pos_sprite(t_cub *cub, int x, int y)
-{
-	if ((cub->map[x][y + 1] == ' ' || cub->map[x][y + 1] == '\0')
-	|| (cub->map[x][y - 1] == ' ' || cub->map[x][y - 1] == '\0')
-	|| (cub->map[x - 1][y] == ' ' || cub->map[x - 1][y] == '\0')
-	|| (cub->map[x + 1][y] == ' ' || cub->map[x + 1][y] == '\0')
-	|| (cub->map[x + 1][y + 1] == ' ' || cub->map[x + 1][y + 1] == '\0')
-	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
-	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
-	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-		return_error("Error! Sprite not in map.\n", cub);
-	return ;
-}
 
 void					sort_sprite(t_cub *s)
 {

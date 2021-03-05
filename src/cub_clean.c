@@ -56,24 +56,3 @@ void					free_array(char **r)
 		free(r[i++]);
 	free(r);
 }
-
-void					return_error(char *error, t_cub *cub)
-{
-	int					len;
-
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-int						ft_exit(t_cub *cub)
-{
-	ft_freeleak(cub);
-	if (cub->flags.screen == 0 && cub->flags.texture_okey == 1)
-		if (cub->image)
-			mlx_destroy_image(cub->mlx, cub->image);
-	if (cub->flags.screen == 0 && cub->flags.texture_okey == 1)
-		if (cub->cub_win_ptr)
-			mlx_destroy_window(cub->mlx, cub->cub_win_ptr);
-	exit(0);
-}

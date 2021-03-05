@@ -1,0 +1,16 @@
+R 1920 1080
+
+NO texture/noise.xpm
+SO texture/noise.xpm
+WE texture/noise.xpm
+EA texture/noise.xpm
+S texture/64cat.xpm
+
+C 1, 2, 2
+F 5, 02, 5
+
+11111
+10001
+10S01
+10021
+11111

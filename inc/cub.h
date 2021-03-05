@@ -63,6 +63,8 @@ typedef struct				s_flags
 	bool					parce_map_start;
 	bool					sprites_in_map;
 	bool					texture_okey;
+	bool					ceiling_color_ok;
+	bool					floor_color_ok;
 }							t_flags;
 
 typedef struct				s_plr
@@ -209,8 +211,6 @@ void						set_pixel(t_cub *cub, int x, int y, int color);
 void						get_sprite_val(t_cub *cub);
 void						parce_struct_sprites(t_cub *cub);
 void						ray_cast(t_cub *cub);
-void						turn(t_cub *cub, double cos, double sin);
-void						move_speed(t_cub *cub);
 void						return_error(char *error, t_cub *cub);
 void						press(t_cub *cub);
 void						check_wall(t_cub *cub, int x, int y);
@@ -238,10 +238,10 @@ void						bmp_header(t_cub *cub);
 void						mlx_hl(t_cub *cub);
 void						parce_and_check(t_cub *cub,
 							int fd_for_number_line, int fd);
-void						move_forth(t_cub *cub);
-void						move_back(t_cub *cub);
-void						move_right(t_cub *cub);
-void						move_left(t_cub *cub);
+void						move_turn(t_cub *cub, double cos, double sin);
+void						move_right_and_left(t_cub *cub, int init);
+void						move_forth_and_back(t_cub *cub, int init);
+void						move_speed(t_cub *cub);
 void						sort_sprite(t_cub *s);
 void						get_sprites_pos(t_cub *cub);
 void						sprites_draw_start_end(t_cub *cub);

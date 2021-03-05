@@ -16,27 +16,27 @@ LIBFT = Libft/libft.a
 
 OBJD = objects/
 
-SRS =	parce.c \
-		mlx_init.c \
-		mlx_make_texture.c \
-		clean.c \
-		raycast.c \
-		raycast_1.c \
-		main.c \
-		render.c \
-		periphery.c \
-		raysprites.c \
-		sprites.c \
-		parce_check_sprites.c \
-		player_move.c \
-		check_error.c \
-		check_map.c \
-		check_map_1.c \
-		parce_line.c \
-		parce_color.c \
-		parce_number_line.c \
-		parce_keys.c \
-		screen.c
+SRS =	main.c \
+		cub_parce.c \
+		cub_parce_number_line.c \
+		cub_parce_line.c \
+		cub_parce_keys.c \
+		cub_parce_color.c \
+		cub_check_error.c \
+		cub_check_map.c \
+		cub_check_map_1.c \
+		cub_parce_check_sprites.c \
+		cub_make_texture.c \
+		cub_mlx.c \
+		cub_drawing.c \
+		cub_sprites.c \
+		cub_raycast.c \
+		cub_raycast_1.c \
+		cub_raysprites.c \
+		cub_player_move.c \
+		cub_keyboard.c \
+		cub_clean.c \
+		cub_screen.c
 
 SRCD = src/
 

@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_1.c                                      :+:      :+:    :+:   */
+/*   cub_check_map_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 20:18:11 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:18:13 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:04:17 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:04:18 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub.h"
 
@@ -29,7 +30,7 @@ void					check_player_pos(t_cub *cub)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-			error_map_tex_color("Player's error!\n", cub);
+			cub_error("Erro! Player's error!\n", cub, FREE_MAP_TEX_COLOR);
 	}
 	return ;
 }
@@ -53,7 +54,7 @@ void					check_map_validate(t_cub *cub)
 			|| cub->map[x][i] == 'W'
 			|| cub->map[x][i] == 'E'
 			|| cub->map[x][i] == ' '))
-				error_map_tex_color("Error! Not valide symbol in map.\n", cub);
+				cub_error("Error! Not valide symbol in map.\n", cub, FREE_MAP_TEX_COLOR);
 			i++;
 		}
 		x++;

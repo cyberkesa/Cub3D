@@ -36,12 +36,10 @@ int						main(int argc, char **argv)
 {
 	t_cub				cub;
 
-	null_all_pointer(&cub); //здесь мы зануляем все указатели
-	ft_bzero(&cub, sizeof(t_cub)); //инициализируем структуру нулями
-	cub.fd = cub_args_and_fd(&cub, argc, argv); //на этом этапе память не выделяется
-	//считается кол-во строк, проверяются аргументы
-	cub_allocate_map(&cub); //здесь выделяется память для карты и всегда
-	//должна быть очищена в дальнейшем
+	null_all_pointer(&cub);
+	ft_bzero(&cub, sizeof(t_cub));
+	cub.fd = cub_args_and_fd(&cub, argc, argv);
+	cub_allocate_map(&cub);
 	parce_and_check(&cub);
 	cub.mlx = mlx_init();
 	cub.cub_win_ptr = mlx_new_window(cub.mlx, cub.width, cub.height, "Cub3D");

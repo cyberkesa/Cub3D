@@ -1,105 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub_returnes.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 17:07:24 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:07:25 by vwinfred         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
-
-void					return_error(char *error, t_cub *cub)
-{
-	int					len;
-
-	// close(fd);
-	// ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					re_exit_mlx_clean_all(char *error, t_cub *cub)
-{
-	int					len;
-
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					re_free_only_map(char *error, t_cub *cub)
-{
-	int					len;
-
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					re_free_map_tex_and_sprites(char *error, t_cub *cub)
-{
-	int					len;
-
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					error_map_tex_fd(char *error, t_cub *cub)
-{
-	int					len;
-
-	// close(fd);
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					re_free_map_and_tex(char *error, t_cub *cub)
-{
-	int					len;
-
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					error_map_tex_fd_color(char *error, t_cub *cub)
-{
-	int					len;
-
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					error_map_tex_color(char *error, t_cub *cub)
-{
-	int					len;
-
-	ft_freeleak(cub);
-	len = (int)ft_strlen(error);
-	write(2, error, len);
-	ft_exit(cub);
-}
-
-void					re_no_free(char *error, t_cub *cub)
+void					cub_error(char *error, t_cub *cub, int code)
 {
 	int					len;
 
 	len = (int)ft_strlen(error);
 	write(2, error, len);
-	ft_exit(cub);
+	if (code == NO_FREE)
+		exit(0);
+	if (code == FREE_MAP)
+		cub_free_map(cub);
+	if (code == FREE_MAP_TEX)
+		re_map_tex(cub);
+	if (code == FREE_MAP_TEX_COLOR)
+		re_map_tex_color(cub);
+	if (code == FREE_MAP_TEX_COLOR_FD)
+		re_map_tex_fd_color(cub);
+	if (code == FREE_MAP_TEX_COLOR_SPRITES)
+		re_map_tex_sprites_color(cub);
+	if (code == FREE_ALL)
+		free_all_and_exit(cub);
+	exit (0);
 }
 
-
-int						ft_exit(t_cub *cub)
+int					free_all_and_exit(t_cub *cub)
 {
-	if (cub->flags.screen == 0 && cub->flags.texture_okey == 1)
-		if (cub->image)
-			mlx_destroy_image(cub->mlx, cub->image);
-	if (cub->flags.screen == 0 && cub->flags.texture_okey == 1)
-		if (cub->cub_win_ptr)
-			mlx_destroy_window(cub->mlx, cub->cub_win_ptr);
-	exit(0);
+	cub_free_mlx(cub);
+	cub_free_map(cub);
+	cub_free_color(cub);
+	cub_free_sprites(cub);
+	cub_free_textures(cub);
+	exit (0);
+	return (0);
 }
+
+void					re_map_tex_sprites_color(t_cub *cub)
+{
+	cub_free_map(cub);
+	cub_free_color(cub);
+	cub_free_textures(cub);
+	cub_free_sprites(cub);
+}
+
+void					re_map_tex(t_cub *cub)
+{
+	cub_free_map(cub);
+	cub_free_textures(cub);
+}
+
+void					re_map_tex_fd_color(t_cub *cub)
+{
+	close(cub->fd);
+	cub_free_map(cub);
+	cub_free_color(cub);
+	cub_free_textures(cub);
+}
+
+void					re_map_tex_color(t_cub *cub)
+{
+	cub_free_map(cub);
+	cub_free_color(cub);
+	cub_free_textures(cub);
+}
+

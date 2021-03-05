@@ -24,7 +24,13 @@
 # include <math.h>
 # include <mlx.h>
 
-# define SQUARE 21
+# define NO_FREE 1
+# define FREE_MAP 2
+# define FREE_MAP_TEX 3
+# define FREE_MAP_TEX_COLOR 4
+# define FREE_MAP_TEX_COLOR_FD 5
+# define FREE_MAP_TEX_COLOR_SPRITES 6
+# define FREE_ALL 8
 # define ESC 53
 # define MOVE_LEFT 0
 # define MOVE_RIGHT 2
@@ -240,6 +246,7 @@ void						ray_start_end(t_cub *cub);
 void						bmp_info(t_cub *cub, int fd);
 void						get_pixel(t_cub *cub, int fd);
 void						bmp_header(t_cub *cub);
+int							turn_off(int key, void *arg);
 void						mlx_hl(t_cub *cub);
 void						parce_and_check(t_cub *cub);
 void						move_turn(t_cub *cub, double cos, double sin);
@@ -262,17 +269,19 @@ void						null_all_pointer(t_cub *cub);
 void						cub_allocate_sprites(t_cub *cub);
 void						cub_allocate_map(t_cub *cub);
 int							cub_args_and_fd(t_cub *cub, int argc, char **argv);
+void						cub_error(char *error, t_cub *cub, int code);
+void						re_map_tex_sprites_color(t_cub *cub);
+void						re_map_tex_fd_color(t_cub *cub);
+int							free_all_and_exit(t_cub *cub);
+void						re_map_tex_color(t_cub *cub);
+void						re_map_tex_fd(t_cub *cub);
+void						re_map_tex(t_cub *cub);
+void						re_map(t_cub *cub);
 
-void						re_exit_mlx_clean_all(char *error, t_cub *cub);
-void						re_free_only_map(char *error, t_cub *cub);
-void						re_free_map_tex_and_sprites(char *error, t_cub *cub);
-void						error_map_tex_fd(char *error, t_cub *cub);
-void						re_free_map_and_tex(char *error, t_cub *cub);
-void						error_map_tex_fd_color(char *error, t_cub *cub);
-void						error_map_tex_color(char *error, t_cub *cub);
-void						re_no_free(char *error, t_cub *cub);
-
-
-
+void					cub_free_textures(t_cub *cub);
+void					cub_free_color(t_cub *cub);
+void					cub_free_sprites(t_cub *cub);
+void					cub_free_mlx(t_cub *cub);
+void					cub_free_map(t_cub *cub);
 
 #endif

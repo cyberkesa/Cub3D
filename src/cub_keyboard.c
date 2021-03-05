@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   periphery.c                                        :+:      :+:    :+:   */
+/*   cub_keyboard.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 20:19:26 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:20:13 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:04:32 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:04:33 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int						turn_off(int key, void *arg)
 
 	cub = arg;
 	if (key == ESC)
-	{
-		ft_freeleak(cub);
-		exit(0);
-	}
+		free_all_and_exit(cub);
 	else
 	{
 		cub->pressed_key = key;

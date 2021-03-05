@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   cub_check_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 20:18:04 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:18:05 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:04:09 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:04:10 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void					check_first_line(char *line, t_cub *cub)
 	{
 		if (line[i] == '0' || line[i] == 'N' || line[i] == 'S'
 		|| line[i] == 'W' || line[i] == 'E' || line[i] == '2')
-			error_map_tex_fd("Error first line!\n", cub);
+			cub_error("Error first line!\n", cub, FREE_MAP_TEX_COLOR_FD);
 		i++;
 	}
 }
@@ -40,7 +40,7 @@ void					check_last_line(t_cub *cub)
 		|| cub->map[x][i] == 'S'
 		|| cub->map[x][i] == 'W'
 		|| cub->map[x][i] == 'E')
-			error_map_tex_fd("Error last line!\n", cub);
+			cub_error("Error last line!\n", cub, FREE_MAP_TEX_COLOR);
 		i++;
 	}
 }
@@ -60,7 +60,7 @@ int						check_nswe(t_cub *cub, char *line)
 		i++;
 	}
 	if (a > 1)
-		error_map_tex_fd("Error! Not valide number of player.\n", cub);
+		cub_error("Error! Not valide number of player.\n", cub, FREE_MAP_TEX_COLOR_FD);
 	i = 0;
 	while (line[i])
 	{
@@ -82,7 +82,7 @@ void					check_wall(t_cub *cub, int x, int y)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-		error_map_tex_color("Error! Map bad closed.\n", cub);
+		cub_error("Error! Map bad closed.\n", cub, FREE_MAP_TEX_COLOR);
 	return ;
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub_args_number_line.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/05 17:03:44 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:03:45 by vwinfred         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 void					check_maybe_not_valid_line(char *line, t_cub *cub)
@@ -12,7 +24,7 @@ void					check_maybe_not_valid_line(char *line, t_cub *cub)
 		i++;
 	}
 	close(cub->fd_for_number_line);
-	re_no_free("Error! Global error with map.\n", cub);
+	cub_error("Error! Global error with map.\n", cub, NO_FREE);
 }
 
 void					check_valid_argc(int argc, char **argv, t_cub *cub)
@@ -24,14 +36,14 @@ void					check_valid_argc(int argc, char **argv, t_cub *cub)
 	&& argv[1][argv_len - 2] != 'c'
 	&& argv[1][argv_len - 1] != 'u'
 	&& argv[1][argv_len] != 'b')
-		re_no_free("Error! Need .cub.\n", cub);
+		cub_error("Error! Need .cub.\n", cub, NO_FREE);
 	if (argc == 3 && argv[2][0] == '-'
 	&& argv[2][1] == '-' && argv[2][2] == 's'
 	&& argv[2][3] == 'a' && argv[2][4] == 'v'
 	&& argv[2][5] == 'e' && argv[2][6] == '\0')
 		cub->flags.screen = 1;
 	else if (argc >= 3)
-		re_no_free("Error! Not valide number of arguments.\n", cub);
+		cub_error("Error! Not valide number of arguments.\n", cub, NO_FREE);
 }
 
 void					parce_number_line(t_cub *cub)
@@ -56,12 +68,12 @@ int						cub_args_and_fd(t_cub *cub, int argc, char **argv)
 	int					fd;
 
 	if (!argv[1])
-		re_no_free("Error argv.\n", cub);
+		cub_error("Error argv.\n", cub, NO_FREE);
 	check_valid_argc(argc, argv, cub);
 	fd = open(argv[1], O_RDONLY);
 	cub->fd_for_number_line = open(argv[1], O_RDONLY);
 	if (cub->fd_for_number_line < 0 || fd < 0)
-		re_no_free("Error argv.\n", cub);
+		cub_error("Error argv.\n", cub, NO_FREE);
 	parce_number_line(cub);
 	close(cub->fd_for_number_line);
 	return (fd);

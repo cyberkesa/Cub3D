@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen.c                                           :+:      :+:    :+:   */
+/*   cub_screen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/04 16:36:13 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/03/04 16:36:15 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:05:33 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:05:33 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void					get_pixel(t_cub *cub, int fd)
 		i -= 2 * cub->width;
 	}
 	close(fd);
-	ft_exit(cub);
+	free_all_and_exit(cub);
 }
 
 void					bmp_info(t_cub *cub, int fd)
@@ -43,7 +43,7 @@ void					bmp_info(t_cub *cub, int fd)
 	char				*info;
 
 	if (!(info = ft_calloc(BMP_I_SIZE, 1)))
-		return_error("Error! With screen.\n", cub);
+		cub_error("Error! With screen.\n", cub, NO_FREE);
 	info[0] = BMP_I_SIZE;
 	info[4] = cub->width;
 	info[5] = cub->width >> 8;
@@ -67,9 +67,9 @@ void					bmp_header(t_cub *cub)
 	char				*header;
 
 	if ((fd = open("img.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0777)) < 0)
-		return_error("Error! With screen.\n", cub);
+		cub_error("Error! With screen.\n", cub, NO_FREE);
 	if (!(header = ft_calloc(BMP_H_SIZE, 1)))
-		return_error("Error! With screen.\n", cub);
+		cub_error("Error! With screen.\n", cub, NO_FREE);
 	size = cub->height * (cub->width * cub->bpp / 8) + BMP_H_SIZE + BMP_I_SIZE;
 	header[0] = 'B';
 	header[1] = 'M';

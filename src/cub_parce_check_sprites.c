@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_check_sprites.c                              :+:      :+:    :+:   */
+/*   cub_parce_check_sprites.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/04 16:35:19 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/03/04 16:35:20 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:05:47 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:05:48 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ void					check_valide_pos_sprite(t_cub *cub, int x, int y)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-		return_error("Error! Sprite not in map.\n", cub);
+		cub_error("Error! Sprite not in map.\n", cub, FREE_MAP_TEX_COLOR_SPRITES);
 	return ;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   cub_check_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 20:17:53 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:17:55 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:03:56 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:04:00 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void					check_keys_true(t_cub *cub)
 	|| (cub->flags.ceiling_color_ok == 0)
 	|| (cub->flags.floor_color_ok == 0)
 	|| (!cub->width || !cub->height))
-		error_map_tex_color("Error! Keys in map.cub.\n", cub);
+		cub_error("Error! Keys in map.cub.\n", cub, FREE_MAP_TEX_COLOR);
 }
 
 void					nswe(t_cub *cub)
 {
 	cub->fov = ((double)cub->width / (double)cub->height) / 2.4;
 	if (cub->plr.nswe == 0)
-		error_map_tex_color("Error! Where player?\n", cub);
+		cub_error("Error! Where player?\n", cub, FREE_MAP_TEX_COLOR);
 	if (cub->plr.nswe == 'N')
 	{
 		cub->ray.dir_y = -1;

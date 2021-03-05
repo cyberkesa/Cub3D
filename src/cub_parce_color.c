@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_color.c                                      :+:      :+:    :+:   */
+/*   cub_parce_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwinfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 20:19:00 by vwinfred          #+#    #+#             */
-/*   Updated: 2021/02/26 20:19:01 by vwinfred         ###   ########.fr       */
+/*   Created: 2021/03/05 17:04:44 by vwinfred          #+#    #+#             */
+/*   Updated: 2021/03/05 17:04:45 by vwinfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void					parce_ceiling_color(char *line, t_cub *cub)
 		cub->flags.ceiling_color_ok = 1;
 	}
 	else
-		error_map_tex_fd_color("Error! Color's doubles.\n", cub);
+		cub_error("Error! Color's doubles.\n", cub, FREE_MAP_TEX_COLOR_FD);
 }
 
 void					parce_floor_color(char *line, t_cub *cub)
@@ -33,7 +33,7 @@ void					parce_floor_color(char *line, t_cub *cub)
 		cub->flags.floor_color_ok = 1;
 	}
 	else
-		error_map_tex_fd_color("Error! Color's doubles.\n", cub);
+		cub_error("Error! Color's doubles.\n", cub, FREE_MAP_TEX_COLOR_FD);
 }
 
 void					check_two_commas(char *line, t_cub *cub)
@@ -50,6 +50,6 @@ void					check_two_commas(char *line, t_cub *cub)
 		i++;
 	}
 	if (a != 2)
-		error_map_tex_fd_color("Error! Commas troubles.\n", cub);
+		cub_error("Error! Commas troubles.\n", cub, FREE_MAP_TEX_COLOR_FD);
 	return ;
 }

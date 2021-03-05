@@ -19,6 +19,8 @@ void						set_pixel(t_cub *cub, int x, int y, int color)
 	pixel_position = y * cub->image_line + x;
 	if (pixel_position >= cub->image_size || pixel_position < 0)
 		return ;
+	if (color < 0)
+		color = 0x00FFFFFF;
 	cub->image_data[pixel_position] = color;
 }
 

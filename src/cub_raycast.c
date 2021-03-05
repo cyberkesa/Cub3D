@@ -12,7 +12,7 @@
 
 #include "cub.h"
 
-void			ray_perp(t_cub *cub)
+void				ray_perp(t_cub *cub)
 {
 	if (cub->ray.side == 0)
 		cub->ray.perp_wall = (cub->ray.x_int - cub->plr.x +
@@ -22,7 +22,7 @@ void			ray_perp(t_cub *cub)
 		(1 - cub->ray.step_y) / 2) / cub->ray.ray_dir_y;
 }
 
-void			ray_start_end(t_cub *cub)
+void				ray_start_end(t_cub *cub)
 {
 	cub->line_height = (int)(cub->height / cub->ray.perp_wall - 2);
 	cub->draw_start = -cub->line_height / 2 + cub->height / 2;
@@ -41,13 +41,14 @@ void			ray_start_end(t_cub *cub)
 	2 + cub->line_height / 2) * cub->step;
 }
 
-void			ray_cast(t_cub *cub)
+void				ray_cast(t_cub *cub)
 {
+	register int	loop;
 	press(cub);
-	cub->loop = 0;
-	while (cub->loop <= cub->width)
+	loop = 0;
+	while (loop <= cub->width)
 	{
-		ray_math(cub);
+		ray_math(cub, loop);
 		ray_step(cub);
 		ray_hit(cub);
 		ray_perp(cub);
@@ -61,9 +62,9 @@ void			ray_cast(t_cub *cub)
 			cub->tex_y = (int)cub->tex_pos &
 			(cub->tex[cub->texture_id].height - 1);
 			cub->tex_pos += cub->step;
-			set_pixel(cub, cub->loop, cub->draw_start++, cub->ray.color);
+			set_pixel(cub, loop, cub->draw_start++, cub->ray.color);
 		}
-		cub->perp_for_sprites[cub->loop] = cub->ray.perp_wall;
-		cub->loop++;
+		cub->perp_for_sprites[loop] = cub->ray.perp_wall;
+		loop++;
 	}
 }

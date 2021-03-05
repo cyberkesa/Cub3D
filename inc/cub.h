@@ -75,6 +75,7 @@ typedef struct				s_flags
 	bool					tex_ea;
 	bool					tex_we;
 	bool					tex_s;
+	bool					resolution;
 }							t_flags;
 
 typedef struct				s_plr
@@ -238,7 +239,7 @@ void						mlx_texture(t_cub *cub);
 void						make_texture_pixel_array(t_cub *cub, int num);
 void						set_side_texture(t_cub *cub);
 void						ray_step(t_cub *cub);
-void						ray_math(t_cub *cub);
+void						ray_math(t_cub *cub, int loop);
 void						ray_hit(t_cub *cub);
 void						ray_wall_x(t_cub *cub);
 void						ray_perp(t_cub *cub);

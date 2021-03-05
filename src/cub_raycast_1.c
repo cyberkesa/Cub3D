@@ -58,9 +58,9 @@ void						ray_step(t_cub *cub)
 	}
 }
 
-void						ray_math(t_cub *cub)
+void						ray_math(t_cub *cub, int loop)
 {
-	cub->cam_x = 2 * (cub->width - cub->loop) / (double)cub->width - 1;
+	cub->cam_x = 2 * (cub->width - loop) / (double)cub->width - 1;
 	cub->ray.ray_dir_x = cub->ray.dir_x + cub->ray.plane_x * cub->cam_x;
 	cub->ray.ray_dir_y = cub->ray.dir_y + cub->ray.plane_y * cub->cam_x;
 	cub->ray.x_int = (int)cub->plr.x;

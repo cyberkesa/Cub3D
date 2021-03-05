@@ -58,7 +58,7 @@ all: $(NAME)
 
 $(NAME):: $(LIBFT) $(OBJD)
 $(NAME):: $(OBJECTS)
-	@$(CC) $(CFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
+	@$(CC) -fsanitize=address $(CFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
 	@printf "\x1b[7m Create: "
 	@printf $@
 	@printf "\x1b[7m\n"

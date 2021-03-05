@@ -14,27 +14,33 @@
 
 void					parce_r(char *line, t_cub *cub)
 {
-	static int			i = 0;
 	char				**r;
 
-	r = ft_split(ft_strchr(line, 'R') + 1, ' ');
-	if ((r[2]) || !r[0] || !r[1])
-		cub_error("Error! Not valide 'R'\n", cub, FREE_MAP_TEX_COLOR_FD);
-	cub->width = ft_atoi(r[0]);
-	cub->height = ft_atoi(r[1]);
-	free_array(r);
-	if (cub->width <= 0 || cub->height <= 0)
-		cub_error("Error! Not valide 'R'\n", cub, FREE_MAP_TEX_COLOR_FD);
-	if (cub->height <= 300)
-		cub->height = 300;
-	if (cub->width <= 300)
-		cub->width = 300;
-	if (cub->height >= 1440)
-		cub->height = 1440;
-	if (cub->width >= 2560)
-		cub->width = 2560;
-	i++;
-	if (i > 1)
+	if (cub->flags.resolution == 0)
+	{
+		if (line[1] != ' ')
+			cub_error("Error! Where whitespace after 'R'?\n", cub, FREE_MAP_TEX_COLOR_FD);
+		r = ft_split(ft_strchr(line, 'R') + 1, ' ');
+		if ((r[2]) || !r[0] || !r[1])
+			cub_error("Error! Not valide 'R'\n", cub, FREE_MAP_TEX_COLOR_FD);
+		if (ft_strlen(r[0]) > 10 || ft_strlen(r[1]) > 10)
+			cub_error("Error! Very big 'R'\n", cub, FREE_MAP_TEX_COLOR_FD);
+		cub->width = ft_atoi(r[0]);
+		cub->height = ft_atoi(r[1]);
+		free_array(r);
+		if (cub->width <= 0 || cub->height <= 0)
+			cub_error("Error! Not valide 'R'\n", cub, FREE_MAP_TEX_COLOR_FD);
+		if (cub->height <= 300)
+			cub->height = 300;
+		if (cub->width <= 300)
+			cub->width = 300;
+		if (cub->height >= 1440)
+			cub->height = 1440;
+		if (cub->width >= 2560)
+			cub->width = 2560;
+		cub->flags.resolution = 1;
+	}
+	else
 		cub_error("Error! Doubles 'R'.\n", cub, FREE_MAP_TEX_COLOR_FD);
 }
 

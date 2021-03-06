@@ -14,10 +14,13 @@
 
 void					parce_ceiling_color(char *line, t_cub *cub)
 {
+	char				*color;
+	
 	if (cub->flags.ceiling_color_ok == 0)
 	{
 		check_two_commas(line, cub);
-		cub->ceiling_color = parse_color(ft_strtrim(line, "C "), cub);
+		color = ft_strtrim(line, "C ");
+		cub->ceiling_color = parse_color(color, cub);
 		cub->flags.ceiling_color_ok = 1;
 	}
 	else
@@ -26,10 +29,13 @@ void					parce_ceiling_color(char *line, t_cub *cub)
 
 void					parce_floor_color(char *line, t_cub *cub)
 {
+	char				*color;
+
 	if (cub->flags.floor_color_ok == 0)
 	{
 		check_two_commas(line, cub);
-		cub->floor_color = parse_color(ft_strtrim(line, "F "), cub);
+		color = ft_strtrim(line, "F ");
+		cub->floor_color = parse_color(color, cub);
 		cub->flags.floor_color_ok = 1;
 	}
 	else

@@ -32,11 +32,12 @@ void					check_valid_argc(int argc, char **argv, t_cub *cub)
 	int					argv_len;
 
 	argv_len = (int)ft_strlen(argv[1]) - 1;
-	if (argv[1][argv_len - 3] != '.'
+	if ((ft_isalpha(argv[1][argv_len - 4]) == 0)
+	|| (argv[1][argv_len - 3] != '.'
 	&& argv[1][argv_len - 2] != 'c'
 	&& argv[1][argv_len - 1] != 'u'
-	&& argv[1][argv_len] != 'b')
-		cub_error("Error! Need .cub.\n", cub, NO_FREE);
+	&& argv[1][argv_len] != 'b'))
+		cub_error("Error! Need valide name file or .cub\n", cub, NO_FREE);
 	if (argc == 3 && argv[2][0] == '-'
 	&& argv[2][1] == '-' && argv[2][2] == 's'
 	&& argv[2][3] == 'a' && argv[2][4] == 'v'

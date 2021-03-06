@@ -26,6 +26,4 @@ void					cub_allocate_sprites(t_cub *cub)
 	cub->sp_order = malloc(sizeof(int) * cub->val_sprites);
 	cub->sp_dist = malloc(sizeof(double) * cub->val_sprites);
 	cub->perp_for_sprites = malloc(sizeof(double) * cub->width + 1);
-	// if (!cub->sprites)
-	// 	exit(-1);
 }

@@ -45,15 +45,13 @@ void					cub_free_sprites(t_cub *cub)
 	}
 }
 
-void					cub_free_color(t_cub *cub)
-{
-	printf("%d\n", cub->flags.ceiling_color_ok);
-	// if (cub->flags.ceiling_color_ok)
-	// 	free(cub->ceiling_color);
-	// if (cub->flags.floor_color_ok)
-	// 	free(cub->floor_color);
-	return ;
-}
+// void					cub_free_color(t_cub *cub)
+// {
+// 	if (cub->flags.ceiling_color_ok)
+// 		free(cub->ceiling_color);
+// 	if (cub->flags.floor_color_ok)
+// 		free(cub->floor_color);
+// }
 
 void					cub_free_textures(t_cub *cub)
 {

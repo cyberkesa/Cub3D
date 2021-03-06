@@ -48,7 +48,7 @@ OBJECTS =	$(addprefix $(OBJD), $(patsubst %.c, %.o, $(SRS)))
 INCLUDES = -I inc/ -I Libft/
 
 
-CFLAGS = -O2 -Wall -Werror -Wextra
+CFLAGS =  -fsanitize=address -march=amdfam10 -O2 -ftree-vectorize -Warray-bounds -pipe -msse -msse2 -msse3 -mmmx -m3dnow -Wall -Werror -Wextra
 
 MINILIBFLAGS = -framework OpenGL -framework AppKit -lmlx
 
@@ -58,7 +58,7 @@ all: $(NAME)
 
 $(NAME):: $(LIBFT) $(OBJD)
 $(NAME):: $(OBJECTS)
-	@$(CC) -fsanitize=address $(CFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
+	@$(CC) -Wstrict-overflow=5 $(CFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
 	@printf "\x1b[7m Create: "
 	@printf $@
 	@printf "\x1b[7m\n"

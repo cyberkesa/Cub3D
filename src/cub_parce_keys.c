@@ -80,30 +80,39 @@ void					check_one_more_null(int color, char *rgb, t_cub *cub)
 		cub_error("Error! Not valide color.\n", cub, FREE_MAP_TEX_COLOR_FD);
 }
 
-int						parse_color(char *line, t_cub *cub)
+int						parse_color(char *color, t_cub *cub)
 {
 	char				**rgb;
 	int					r;
 	int					g;
 	int					b;
 
-	rgb = ft_split(line, ',');
-	rgb[0] = ft_strtrim(rgb[0], " ");
-	rgb[1] = ft_strtrim(rgb[1], " ");
-	rgb[2] = ft_strtrim(rgb[2], " ");
+	rgb = NULL;
+	rgb = ft_split(color, ',');
+
 	if (rgb[3] || !rgb[0] || !rgb[2] || !rgb[1])
+	{
+		free_array(rgb);
+		free(color);
 		cub_error("Error! RGB: XXX, XXX, XXX\n", cub, FREE_MAP_TEX_COLOR_FD);
-	check_valid_color(rgb[0], cub);
-	check_valid_color(rgb[1], cub);
-	check_valid_color(rgb[2], cub);
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	check_one_more_null(r, rgb[0], cub);
-	check_one_more_null(g, rgb[1], cub);
-	check_one_more_null(b, rgb[2], cub);
+	}
+	char *red = ft_strtrim(rgb[0], " ");
+	char *green = ft_strtrim(rgb[1], " ");
+	char *blue = ft_strtrim(rgb[2], " ");
+	check_valid_color(red, cub);
+	check_valid_color(green, cub);
+	check_valid_color(blue, cub);
+	r = ft_atoi(red);
+	g = ft_atoi(green);
+	b = ft_atoi(blue);
+	check_one_more_null(r, red, cub);
+	check_one_more_null(g, green, cub);
+	check_one_more_null(b, blue, cub);
+	free(red);
+	free(green);
+	free(blue);
 	free_array(rgb);
-	free(line);
+	free(color);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		cub_error("Error! RGB range: 0 - 255\n", cub, FREE_MAP_TEX_COLOR_FD);
 	return (((r & 0x0ff) << 16) | ((g & 0x0ff) << 8) | (b & 0x0ff));

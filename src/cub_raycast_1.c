@@ -17,16 +17,16 @@ void						set_side_texture(t_cub *cub)
 	if (cub->ray.side == 1)
 	{
 		if (cub->ray.step_y > 0)
-			cub->texture_id = 0;
+			cub->t_id = 0;
 		if (cub->ray.step_y < 0)
-			cub->texture_id = 1;
+			cub->t_id = 1;
 	}
 	if (cub->ray.side == 0)
 	{
 		if (cub->ray.step_x > 0)
-			cub->texture_id = 2;
+			cub->t_id = 2;
 		if (cub->ray.step_x < 0)
-			cub->texture_id = 3;
+			cub->t_id = 3;
 	}
 }
 

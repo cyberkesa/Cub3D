@@ -48,7 +48,8 @@ OBJECTS =	$(addprefix $(OBJD), $(patsubst %.c, %.o, $(SRS)))
 INCLUDES = -I inc/ -I Libft/ -I minilibx/
 
 # CFLAGS = -g -march=amdfam10 -O2 -ftree-vectorize -Warray-bounds -pipe -msse -msse2 -msse3 -mmmx -m3dnow -Wall -Werror -Wextra
-OTLFLAGS = -O0 -g -Wall -Werror -Wextra
+OTLFLAGS = -O0 -g -Wall -Werror -Wextra -fsanitize=address
+#  -fsanitize=address
 
 
 MINILIBFLAGS = -framework OpenGL -framework AppKit -lmlx
@@ -68,7 +69,7 @@ $(LIBFT):
 	@make -C ./Libft
 
 $(OBJD)%.o: $(SRCD)%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(OTLFLAGS) $(INCLUDES) -c $< -o $@
 	@printf "\x1b[2m\x1b[m Compile object: "
 	@printf $(notdir $@)
 	@printf "\x0b\n"

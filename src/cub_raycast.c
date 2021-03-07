@@ -31,12 +31,12 @@ void				ray_start_end(t_cub *cub)
 	cub->draw_end = cub->line_height / 2 + cub->height / 2;
 	if (cub->draw_end >= cub->height)
 		cub->draw_end = cub->height - 1;
-	cub->tex_x = (int)(cub->wall_x * (double)cub->tex[cub->texture_id].width);
+	cub->tex_x = (int)(cub->wall_x * (double)cub->tex[cub->t_id].width);
 	if (cub->ray.side == 0 && cub->ray.ray_dir_x > 0)
-		cub->tex_x = cub->tex[cub->texture_id].width - cub->tex_x - 1;
+		cub->tex_x = cub->tex[cub->t_id].width - cub->tex_x - 1;
 	if (cub->ray.side == 1 && cub->ray.ray_dir_y < 0)
-		cub->tex_x = cub->tex[cub->texture_id].width - cub->tex_x - 1;
-	cub->step = 1.0 * cub->tex[cub->texture_id].height / cub->line_height;
+		cub->tex_x = cub->tex[cub->t_id].width - cub->tex_x - 1;
+	cub->step = 1.0 * cub->tex[cub->t_id].height / cub->line_height;
 	cub->tex_pos = (cub->draw_start - cub->height /
 	2 + cub->line_height / 2) * cub->step;
 }
@@ -44,6 +44,7 @@ void				ray_start_end(t_cub *cub)
 void				ray_cast(t_cub *cub)
 {
 	register int	loop;
+	register int	new_draw_start;
 	press(cub);
 	loop = 0;
 	while (loop <= cub->width)
@@ -55,14 +56,14 @@ void				ray_cast(t_cub *cub)
 		ray_wall_x(cub);
 		set_side_texture(cub);
 		ray_start_end(cub);
-		while (cub->draw_start < cub->draw_end)
+		new_draw_start = cub->draw_start;
+		while (new_draw_start < cub->draw_end)
 		{
-			cub->ray.color = ((int *)cub->tex[cub->texture_id].image_data)
-			[cub->tex[cub->texture_id].height * cub->tex_y + cub->tex_x];
-			cub->tex_y = (int)cub->tex_pos &
-			(cub->tex[cub->texture_id].height - 1);
+			cub->tex_y = (int)cub->tex_pos & (cub->tex[cub->t_id].width - 1);
 			cub->tex_pos += cub->step;
-			set_pixel(cub, loop, cub->draw_start++, cub->ray.color);
+			int pixel_num = cub->tex[cub->t_id].width * cub->tex_y + cub->tex_x;
+			cub->ray.color = ((int *)cub->tex[cub->t_id].image_data)[pixel_num];
+			set_pixel(cub, loop, new_draw_start++, cub->ray.color);
 		}
 		cub->perp_for_sprites[loop] = cub->ray.perp_wall;
 		loop++;

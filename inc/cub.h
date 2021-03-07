@@ -175,7 +175,7 @@ typedef	struct				s_cub
 	int						height;
 	int						floor_color;
 	int						ceiling_color;
-	int						texture_id;
+	int						t_id;
 	int						pressed_key;
 	int						move_forth;
 	int						move_back;

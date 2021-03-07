@@ -20,18 +20,14 @@ void					cub_free_map(t_cub *cub)
 
 void					cub_free_mlx(t_cub *cub)
 {
-	if (cub->image_data)
-		free(cub->image_data);
-	if (cub->mlx)
-		free(cub->mlx);
-	if (cub->cub_win_ptr)
-		free(cub->cub_win_ptr);
 	if (cub->flags.screen == 0 && cub->flags.texture_okey == 1)
 		if (cub->image)
 			mlx_destroy_image(cub->mlx, cub->image);
 	if (cub->flags.screen == 0 && cub->flags.texture_okey == 1)
 		if (cub->cub_win_ptr)
 			mlx_destroy_window(cub->mlx, cub->cub_win_ptr);
+	if (cub->mlx)
+		free(cub->mlx);
 }
 
 void					cub_free_sprites(t_cub *cub)
@@ -40,18 +36,14 @@ void					cub_free_sprites(t_cub *cub)
 	{
 		free(cub->sprites);
 		free(cub->sp_dist);
-		free(cub->perp_for_sprites);
 		free(cub->sp_order);
 	}
 }
 
-// void					cub_free_color(t_cub *cub)
-// {
-// 	if (cub->flags.ceiling_color_ok)
-// 		free(cub->ceiling_color);
-// 	if (cub->flags.floor_color_ok)
-// 		free(cub->floor_color);
-// }
+void					cub_free_perp(t_cub *cub)
+{
+	free(cub->perp_for_sprites);
+}
 
 void					cub_free_textures(t_cub *cub)
 {

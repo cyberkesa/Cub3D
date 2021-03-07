@@ -76,6 +76,7 @@ int						cub_args_and_fd(t_cub *cub, int argc, char **argv)
 	if (cub->fd_for_number_line < 0 || fd < 0)
 		cub_error("Error argv.\n", cub, NO_FREE);
 	parce_number_line(cub);
+	cub_allocate_map(cub);
 	close(cub->fd_for_number_line);
 	return (fd);
 }

@@ -69,6 +69,6 @@ void					check_valide_pos_sprite(t_cub *cub, int x, int y)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| (cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-		cub_error("Error! Sprite not in map.\n", cub, FREE_MAP_TEX_COLOR_SPRITES);
+		cub_error("Error! Sprite not in map.\n", cub, TEX);
 	return ;
 }

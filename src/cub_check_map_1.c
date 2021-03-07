@@ -30,7 +30,7 @@ void					check_player_pos(t_cub *cub)
 	|| (cub->map[x - 1][y - 1] == ' ' || cub->map[x - 1][y - 1] == '\0')
 	|| (cub->map[x - 1][y + 1] == ' ' || cub->map[x - 1][y + 1] == '\0')
 	|| cub->map[x + 1][y - 1] == ' ' || cub->map[x + 1][y - 1] == '\0'))
-			cub_error("Erro! Player's error!\n", cub, FREE_MAP_TEX_COLOR);
+			cub_error("Erro! Player's error!\n", cub, TEX);
 	}
 	return ;
 }
@@ -54,7 +54,7 @@ void					check_map_validate(t_cub *cub)
 			|| cub->map[x][i] == 'W'
 			|| cub->map[x][i] == 'E'
 			|| cub->map[x][i] == ' '))
-				cub_error("Error! Not valide symbol in map.\n", cub, FREE_MAP_TEX_COLOR);
+				cub_error("Error! Not valide symbol in map.\n", cub, TEX);
 			i++;
 		}
 		x++;

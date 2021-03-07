@@ -45,10 +45,11 @@ SRCD = src/
 
 OBJECTS =	$(addprefix $(OBJD), $(patsubst %.c, %.o, $(SRS)))
 
-INCLUDES = -I inc/ -I Libft/
+INCLUDES = -I inc/ -I Libft/ -I minilibx/
 
+# CFLAGS = -g -march=amdfam10 -O2 -ftree-vectorize -Warray-bounds -pipe -msse -msse2 -msse3 -mmmx -m3dnow -Wall -Werror -Wextra
+OTLFLAGS = -O0 -g -Wall -Werror -Wextra
 
-CFLAGS =  -fsanitize=address -march=amdfam10 -O2 -ftree-vectorize -Warray-bounds -pipe -msse -msse2 -msse3 -mmmx -m3dnow -Wall -Werror -Wextra
 
 MINILIBFLAGS = -framework OpenGL -framework AppKit -lmlx
 
@@ -58,7 +59,7 @@ all: $(NAME)
 
 $(NAME):: $(LIBFT) $(OBJD)
 $(NAME):: $(OBJECTS)
-	@$(CC) -Wstrict-overflow=5 $(CFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) $(LIBFT)
+	@$(CC) $(OTLFLAGS) -o $@ $(INCLUDES) $^ $(MINILIBFLAGS) libmlx.a $(LIBFT)
 	@printf "\x1b[7m Create: "
 	@printf $@
 	@printf "\x1b[7m\n"

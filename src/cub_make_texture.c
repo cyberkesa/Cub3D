@@ -21,7 +21,7 @@ void					make_texture_pixel_array(t_cub *cub, int num)
 	if (fd == -1)
 	{
 		close(fd);
-		cub_error("Error open file texture.\n", cub, FREE_MAP_TEX_COLOR_SPRITES);
+		cub_error("Error open file texture.\n", cub, TEX);
 	}
 	if (cub->tex[num].path != NULL)
 	{
@@ -30,12 +30,12 @@ void					make_texture_pixel_array(t_cub *cub, int num)
 		cub->tex[num].image_ptr = mlx_xpm_file_to_image(cub->mlx,
 		cub->tex[num].path, &cub->tex[num].width, &cub->tex[num].height);
 		if (cub->tex[num].image_ptr == NULL)
-			cub_error("Global error with make texture.\n", cub, FREE_MAP_TEX_COLOR_SPRITES);
+			cub_error("Global error with make texture.\n", cub, TEX);
 		cub->tex[num].image_data = mlx_get_data_addr(cub->tex[num].image_ptr,
 		&cub->tex[num].bpp, &cub->tex[num].size_line, &cub->tex[num].endian);
 	}
 	else
-		cub_error("Error with make texture.\n", cub, FREE_MAP_TEX_COLOR_SPRITES);
+		cub_error("Error with make texture.\n", cub, TEX);
 	close(fd);
 }
 

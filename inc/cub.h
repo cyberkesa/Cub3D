@@ -22,14 +22,12 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <math.h>
+# include "mlx.h"
 # include <mlx.h>
 
 # define NO_FREE 1
-# define FREE_MAP 2
-# define FREE_MAP_TEX 3
-# define FREE_MAP_TEX_COLOR 4
-# define FREE_MAP_TEX_COLOR_FD 5
-# define FREE_MAP_TEX_COLOR_SPRITES 6
+# define TEX 4
+# define FD_TEX 4
 # define FREE_ALL 8
 # define ESC 53
 # define MOVE_LEFT 0
@@ -76,6 +74,10 @@ typedef struct				s_flags
 	bool					tex_we;
 	bool					tex_s;
 	bool					resolution;
+
+	bool					perp_allocate;
+	bool					sprite_allocate;
+	bool					map_allocate;
 }							t_flags;
 
 typedef struct				s_plr
@@ -267,22 +269,18 @@ void						ft_free_more(t_cub *cub);
 void						check_one_more_null(int color,
 							char *rgb, t_cub *cub);
 void						null_all_pointer(t_cub *cub);
+void						cub_allocate_perp_sprites(t_cub *cub);
 void						cub_allocate_sprites(t_cub *cub);
 void						cub_allocate_map(t_cub *cub);
 int							cub_args_and_fd(t_cub *cub, int argc, char **argv);
 void						cub_error(char *error, t_cub *cub, int code);
-void						re_map_tex_sprites_color(t_cub *cub);
 void						re_map_tex_fd_color(t_cub *cub);
 int							free_all_and_exit(t_cub *cub);
-void						re_map_tex_color(t_cub *cub);
-void						re_map_tex_fd(t_cub *cub);
-void						re_map_tex(t_cub *cub);
-void						re_map(t_cub *cub);
 
-void					cub_free_textures(t_cub *cub);
-void					cub_free_color(t_cub *cub);
-void					cub_free_sprites(t_cub *cub);
-void					cub_free_mlx(t_cub *cub);
-void					cub_free_map(t_cub *cub);
+void						cub_free_textures(t_cub *cub);
+void						cub_free_sprites(t_cub *cub);
+void						cub_free_mlx(t_cub *cub);
+void						cub_free_map(t_cub *cub);
+void						cub_free_perp(t_cub *cub);
 
 #endif

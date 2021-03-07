@@ -35,14 +35,14 @@ void					check_keys_true(t_cub *cub)
 	|| (cub->flags.ceiling_color_ok == 0)
 	|| (cub->flags.floor_color_ok == 0)
 	|| (!cub->width || !cub->height))
-		cub_error("Error! Keys in map.cub.\n", cub, FREE_MAP_TEX_COLOR);
+		cub_error("Error! Keys in map.cub.\n", cub, TEX);
 }
 
 void					nswe(t_cub *cub)
 {
 	cub->fov = ((double)cub->width / (double)cub->height) / 2.4;
 	if (cub->plr.nswe == 0)
-		cub_error("Error! Where player?\n", cub, FREE_MAP_TEX_COLOR);
+		cub_error("Error! Where player?\n", cub, TEX);
 	if (cub->plr.nswe == 'N')
 	{
 		cub->ray.dir_y = -1;

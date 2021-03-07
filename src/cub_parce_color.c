@@ -15,7 +15,7 @@
 void					parce_ceiling_color(char *line, t_cub *cub)
 {
 	char				*color;
-	
+
 	if (cub->flags.ceiling_color_ok == 0)
 	{
 		check_two_commas(line, cub);
@@ -24,7 +24,7 @@ void					parce_ceiling_color(char *line, t_cub *cub)
 		cub->flags.ceiling_color_ok = 1;
 	}
 	else
-		cub_error("Error! Color's doubles.\n", cub, FREE_MAP_TEX_COLOR_FD);
+		cub_error("Error! Color's doubles.\n", cub, FD_TEX);
 }
 
 void					parce_floor_color(char *line, t_cub *cub)
@@ -39,7 +39,7 @@ void					parce_floor_color(char *line, t_cub *cub)
 		cub->flags.floor_color_ok = 1;
 	}
 	else
-		cub_error("Error! Color's doubles.\n", cub, FREE_MAP_TEX_COLOR_FD);
+		cub_error("Error! Color's doubles.\n", cub, FD_TEX);
 }
 
 void					check_two_commas(char *line, t_cub *cub)
@@ -56,6 +56,6 @@ void					check_two_commas(char *line, t_cub *cub)
 		i++;
 	}
 	if (a != 2)
-		cub_error("Error! Commas troubles.\n", cub, FREE_MAP_TEX_COLOR_FD);
+		cub_error("Error! Commas troubles.\n", cub, FD_TEX);
 	return ;
 }

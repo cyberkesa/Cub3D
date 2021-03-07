@@ -24,6 +24,7 @@ void					parce_and_check(t_cub *cub)
 	cub->plr.x += 0.5;
 	cub->plr.y += 0.5;
 	nswe(cub);
+	cub_allocate_perp_sprites(cub);
 	get_sprite_val(cub);
 	if (cub->val_sprites > 0)
 	{
@@ -39,7 +40,6 @@ int						main(int argc, char **argv)
 	null_all_pointer(&cub);
 	ft_bzero(&cub, sizeof(t_cub));
 	cub.fd = cub_args_and_fd(&cub, argc, argv);
-	cub_allocate_map(&cub);
 	parce_and_check(&cub);
 	cub.mlx = mlx_init();
 	cub.cub_win_ptr = mlx_new_window(cub.mlx, cub.width, cub.height, "Cub3D");

@@ -14,8 +14,7 @@
 
 void					cub_free_map(t_cub *cub)
 {
-	if (cub->flags.parce_map_start == 1 && cub->plr.nswe == 1)
-		free_array(cub->map);
+	free_array(cub->map);
 }
 
 void					cub_free_mlx(t_cub *cub)

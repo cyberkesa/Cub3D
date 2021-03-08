@@ -40,7 +40,7 @@ void					check_keys_true(t_cub *cub)
 
 void					nswe(t_cub *cub)
 {
-	cub->fov = ((double)cub->width / (double)cub->height) / 2.4;
+	cub->fov = 0.66;
 	if (cub->plr.nswe == 0)
 		cub_error("Error! Where player?\n", cub, TEX);
 	if (cub->plr.nswe == 'N')

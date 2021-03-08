@@ -1,16 +1,17 @@
-R 1 1
+R 900 902323213230
 
-NO texture/cyber.xpm
-SO texture/lava.xpm
-WE texture/green.xpm
+NO texture/noise.xpm
+WE texture/noise.xpm
 EA texture/mine.xpm
+
+
 S texture/64cat.xpm
 
-C 12, 21, 21
-F 12, 1,1
+C 255, 255, 25
+F 255, 1, 1
 
-11111
-10001
-10S01
-10001
-11111
+111
+101
+1S1
+101
+111

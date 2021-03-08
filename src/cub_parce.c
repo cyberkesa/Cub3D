@@ -20,29 +20,6 @@ void					make_map_array(t_cub *cub, char *line)
 	i++;
 }
 
-void					parce_map(t_cub *cub, char *line)
-{
-	static int			number_line = 0;
-	static int			doubles_nswe = 0;
-	int					nswe;
-
-	cub->flags.parce_map_start = 1;
-	if (number_line == 0)
-		check_first_line(line, cub);
-	nswe = check_nswe(cub, line);
-	make_map_array(cub, line);
-	if (nswe != -1)
-	{
-		if (doubles_nswe != 0)
-			cub_error("Error! N, S, W, E doubles.\n", cub, FD_TEX);
-		cub->plr.x = nswe;
-		cub->plr.y = number_line;
-		cub->plr.nswe = line[nswe];
-		doubles_nswe++;
-	}
-	number_line++;
-}
-
 void					check_valid_line(char *line, t_cub *cub)
 {
 	if ((line[0] == 'N' && line[1] == 'O')
@@ -61,13 +38,13 @@ void					check_line(char *line, t_cub *cub)
 {
 	if (line[0] == 'N' && line[1] == 'O')
 		parce_no(line, cub);
-	else if (line[0] == 'S' && line[1] == 'O')
+	else if (line[0] == 'S' && line[1] == 'O' && cub->flags.tex_so == 0)
 		parce_so(line, cub);
-	else if (line[0] == 'W' && line[1] == 'E')
+	else if (line[0] == 'W' && line[1] == 'E' && cub->flags.tex_we == 0)
 		parce_we(line, cub);
-	else if (line[0] == 'E' && line[1] == 'A')
+	else if (line[0] == 'E' && line[1] == 'A' && cub->flags.tex_ea == 0)
 		parce_ea(line, cub);
-	else if (line[0] == 'S' && line[1] != 'O')
+	else if (line[0] == 'S' && line[1] != 'O' && cub->flags.tex_s == 0)
 		parce_s(line, cub);
 	else if (line[0] == 'R')
 		parce_r(line, cub);

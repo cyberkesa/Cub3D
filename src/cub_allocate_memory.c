@@ -24,6 +24,13 @@ void					cub_allocate_perp_sprites(t_cub *cub)
 	cub->flags.perp_allocate = 1;
 }
 
+void					cub_allocate_textures(t_cub *cub)
+{
+	cub->tex = NULL;
+	cub->tex = (t_textures *)malloc(sizeof(t_textures) * 5);
+	cub->flags.textures_allocate = 1;
+}
+
 void					cub_allocate_sprites(t_cub *cub)
 {
 	cub->sp_order = NULL;

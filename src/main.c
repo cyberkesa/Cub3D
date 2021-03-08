@@ -16,6 +16,8 @@ void					parce_and_check(t_cub *cub)
 {
 	general_parce(cub);
 	check_keys_true(cub);
+	check_number_nswe(cub);
+	find_player_in_map(cub);
 	check_player_pos(cub);
 	check_last_line(cub);
 	check_map_validate(cub);
@@ -40,6 +42,7 @@ int						main(int argc, char **argv)
 	null_all_pointer(&cub);
 	ft_bzero(&cub, sizeof(t_cub));
 	cub.fd = cub_args_and_fd(&cub, argc, argv);
+	cub_allocate_textures(&cub);
 	parce_and_check(&cub);
 	cub.mlx = mlx_init();
 	cub.cub_win_ptr = mlx_new_window(cub.mlx, cub.width, cub.height, "Cub3D");

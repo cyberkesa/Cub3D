@@ -1,0 +1,15 @@
+R 1211 678
+
+NO texture/noise.xpm
+SO texture/noise.x
+WE texture/noise.xpm
+EA texture/mine.xpm
+S texture/64cat.xpm
+
+C 100, 100, 100
+F 150, 150, 45
+
+111
+101
+1W1
+111

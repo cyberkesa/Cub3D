@@ -45,33 +45,6 @@ void					check_last_line(t_cub *cub)
 	}
 }
 
-int						check_nswe(t_cub *cub, char *line)
-{
-	int					i;
-	int					a;
-
-	i = 0;
-	a = 0;
-	while (line[i])
-	{
-		if (line[i] == 'N' || line[i] == 'S'
-		|| line[i] == 'W' || line[i] == 'E')
-			a++;
-		i++;
-	}
-	if (a > 1)
-		cub_error("Error! Not valide number of player.\n", cub, FD_TEX);
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == 'N' || line[i] == 'S'
-		|| line[i] == 'W' || line[i] == 'E')
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 void					check_wall(t_cub *cub, int x, int y)
 {
 	if ((cub->map[x][y + 1] == ' ' || cub->map[x][y + 1] == '\0')

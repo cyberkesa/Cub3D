@@ -76,6 +76,7 @@ typedef struct				s_flags
 	bool					perp_allocate;
 	bool					sprite_allocate;
 	bool					map_allocate;
+	bool					textures_allocate;
 }							t_flags;
 
 typedef struct				s_plr
@@ -141,13 +142,13 @@ typedef	struct				s_ray
 
 typedef	struct				s_cub
 {
-	t_textures				tex[5];
+	t_textures				*tex;
+	t_sprites				*sprites;
 	t_plr					plr;
 	t_ray					ray;
 	t_spr					spr;
 	t_flags					flags;
 	size_t					val_sprites;
-	t_sprites				*sprites;
 	char					**map;
 	double					*sp_dist;
 	double					*perp_for_sprites;
@@ -193,6 +194,7 @@ typedef	struct				s_cub
 	int						r;
 	int						g;
 	int						b;
+	int						nswe_count;
 }							t_cub;
 
 int							main(int argc, char **argv);
@@ -241,7 +243,7 @@ void						mlx_texture(t_cub *cub);
 void						make_texture_pixel_array(t_cub *cub, int num);
 void						set_side_texture(t_cub *cub);
 void						ray_step(t_cub *cub);
-void						ray_math(t_cub *cub, int loop);
+void						ray_math(t_cub *cub);
 void						ray_hit(t_cub *cub);
 void						ray_wall_x(t_cub *cub);
 void						ray_perp(t_cub *cub);
@@ -287,5 +289,10 @@ void						check_line_resolution(char *line, t_cub *cub);
 void						check_line_color(t_cub *cub, char *color);
 void						super_check_number_element_colors(t_cub *cub,
 							char *color);
+void						set_pos_nswe(t_cub *cub, int x, int y, char c);
+void						find_player_in_map(t_cub *cub);
+void						check_number_nswe(t_cub *cub);
+void						cub_allocate_textures(t_cub *cub);
+void						make_map_array(t_cub *cub, char *line);
 
 #endif

@@ -20,29 +20,21 @@ void					cub_error(char *error, t_cub *cub, int code)
 	write(2, error, len);
 	if (code == NO_FREE)
 		exit(0);
+	else if (code == FD_TEX)
+		close(cub->fd);
+	free_all_and_exit(cub);
+}
+
+int						free_all_and_exit(t_cub *cub)
+{
 	if (cub->flags.map_allocate)
 		cub_free_map(cub);
 	if (cub->flags.perp_allocate)
 		cub_free_perp(cub);
 	if (cub->flags.sprite_allocate)
 		cub_free_sprites(cub);
-	if (code == FREE_ALL)
-		free_all_and_exit(cub);
-	if (code == TEX)
+	if (cub->flags.textures_allocate)
 		cub_free_textures(cub);
-	if (code == FD_TEX)
-	{
-		close(cub->fd);
-		cub_free_textures(cub);
-	}
-	exit(0);
-}
-
-int						free_all_and_exit(t_cub *cub)
-{
-	cub_free_mlx(cub);
-	cub_free_textures(cub);
-	cub->fd = 0;
 	exit(0);
 	return (0);
 }

@@ -32,7 +32,7 @@ void					check_valid_argc(int argc, char **argv, t_cub *cub)
 	int					argv_len;
 
 	argv_len = (int)ft_strlen(argv[1]) - 1;
-	if ((ft_isalpha(argv[1][argv_len - 4]) == 0)
+	if ((ft_isascii(argv[1][argv_len - 4]) == 0)
 	|| (argv[1][argv_len - 3] != '.'
 	&& argv[1][argv_len - 2] != 'c'
 	&& argv[1][argv_len - 1] != 'u'

@@ -18,6 +18,7 @@ OBJD = objects/
 
 SRS =	main.c \
 		cub_parce.c \
+		cub_parce_1.c \
 		cub_parce_line.c \
 		cub_parce_keys.c \
 		cub_parce_color.c \
@@ -48,7 +49,7 @@ OBJECTS =	$(addprefix $(OBJD), $(patsubst %.c, %.o, $(SRS)))
 
 INCLUDES = -I inc/ -I Libft/
 
-CFLAGS  = -O2 -g -Wall -Werror -Wextra -pipe -msse -msse2 -msse3 -mmmx -m3dnow
+CFLAGS = -O2 -Wall -Werror -Wextra -pipe -msse -msse2 -msse3 -mmmx -m3dnow
 
 MINILIBFLAGS = -framework OpenGL -framework AppKit -lmlx
 

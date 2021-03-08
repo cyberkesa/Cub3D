@@ -12,6 +12,23 @@
 
 #include "cub.h"
 
+void					check_line_color(t_cub *cub, char *color)
+{
+	int					i;
+	int					num_digit;
+
+	i = 0;
+	num_digit = 0;
+	while (color[i])
+	{
+		if (ft_isdigit(color[i]) == 1)
+			num_digit++;
+		i++;
+	}
+	if (num_digit > 9 || num_digit < 3)
+		cub_error("Error! Number digit in color not valide.\n", cub, FD_TEX);
+}
+
 void					parce_ceiling_color(char *line, t_cub *cub)
 {
 	char				*color;
@@ -20,6 +37,7 @@ void					parce_ceiling_color(char *line, t_cub *cub)
 	{
 		check_two_commas(line, cub);
 		color = ft_strtrim(line, "C ");
+		check_line_color(cub, color);
 		cub->ceiling_color = parse_color(color, cub);
 		cub->flags.ceiling_color_ok = 1;
 	}
@@ -35,6 +53,7 @@ void					parce_floor_color(char *line, t_cub *cub)
 	{
 		check_two_commas(line, cub);
 		color = ft_strtrim(line, "F ");
+		check_line_color(cub, color);
 		cub->floor_color = parse_color(color, cub);
 		cub->flags.floor_color_ok = 1;
 	}

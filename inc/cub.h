@@ -284,5 +284,8 @@ void						cub_free_perp(t_cub *cub);
 void						colors_check(t_cub *cub, char *red,
 							char *green, char *blue);
 void						check_line_resolution(char *line, t_cub *cub);
+void						check_line_color(t_cub *cub, char *color);
+void						super_check_number_element_colors(t_cub *cub,
+							char *color);
 
 #endif

@@ -48,6 +48,21 @@ void					check_one_more_null(int color, char *rgb, t_cub *cub)
 		cub_error("Error! Not valide color.\n", cub, FD_TEX);
 }
 
+void					super_check_number_element_colors(t_cub *cub,
+						char *color)
+{
+	char				**check;
+
+	check = NULL;
+	check = ft_split(color, ' ');
+	if (check[1] || !check[0])
+	{
+		free_array(check);
+		cub_error("Error! WTF RGB???\n", cub, FD_TEX);
+	}
+	free_array(check);
+}
+
 void					colors_check(t_cub *cub, char *red,
 									char *green, char *blue)
 {
@@ -60,6 +75,9 @@ void					colors_check(t_cub *cub, char *red,
 	check_one_more_null(cub->r, red, cub);
 	check_one_more_null(cub->g, green, cub);
 	check_one_more_null(cub->b, blue, cub);
+	super_check_number_element_colors(cub, red);
+	super_check_number_element_colors(cub, green);
+	super_check_number_element_colors(cub, blue);
 	free(red);
 	free(green);
 	free(blue);

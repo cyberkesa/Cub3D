@@ -25,7 +25,7 @@ void					parce_r(char *line, t_cub *cub)
 			cub_error("Error! Not valide 'R'\n", cub, FD_TEX);
 		cub->width = ft_atoi(r[0]);
 		cub->height = ft_atoi(r[1]);
-		cub->height = (ft_strlen(r[0]) > 4) ? 1440 : cub->height;
+		cub->width = (ft_strlen(r[0]) > 4) ? 1440 : cub->width;
 		cub->height = (ft_strlen(r[1]) > 4) ? 2560 : cub->height;
 		free_array(r);
 		if (cub->width <= 0 || cub->height <= 0)

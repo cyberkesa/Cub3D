@@ -12,34 +12,6 @@
 
 #include "cub.h"
 
-void					parce_r(char *line, t_cub *cub)
-{
-	char				**r;
-
-	if (cub->flags.resolution == 0)
-	{
-		if (line[1] != ' ')
-			cub_error("Error! Where whitespace after 'R'?\n", cub, FD_TEX);
-		r = ft_split(ft_strchr(line, 'R') + 1, ' ');
-		if ((r[2]) || !r[0] || !r[1])
-			cub_error("Error! Not valide 'R'\n", cub, FD_TEX);
-		cub->width = ft_atoi(r[0]);
-		cub->height = ft_atoi(r[1]);
-		cub->width = (ft_strlen(r[0]) > 4) ? 2560 : cub->width;
-		cub->height = (ft_strlen(r[1]) > 4) ? 1440 : cub->height;
-		free_array(r);
-		if (cub->width <= 0 || cub->height <= 0)
-			cub_error("Error! Not valide 'R'\n", cub, FD_TEX);
-		cub->height = (cub->height < 300) ? 300 : cub->height;
-		cub->width = (cub->width < 300) ? 300 : cub->width;
-		cub->height = (cub->height > 1440) ? 1440 : cub->height;
-		cub->width = (cub->width > 2560) ? 2560 : cub->width;
-		cub->flags.resolution = 1;
-	}
-	else
-		cub_error("Error! Doubles 'R'.\n", cub, FD_TEX);
-}
-
 void					check_valid_color(char *rgb, t_cub *cub)
 {
 	int					i;

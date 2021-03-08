@@ -25,6 +25,7 @@ SRS =	main.c \
 		cub_check_map.c \
 		cub_check_map_1.c \
 		cub_parce_check_sprites.c \
+		cub_parce_resolution.c \
 		cub_args_number_line.c \
 		cub_make_texture.c \
 		cub_mlx.c \

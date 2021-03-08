@@ -283,5 +283,6 @@ void						cub_free_map(t_cub *cub);
 void						cub_free_perp(t_cub *cub);
 void						colors_check(t_cub *cub, char *red,
 							char *green, char *blue);
+void						check_line_resolution(char *line, t_cub *cub);
 
 #endif

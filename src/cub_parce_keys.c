@@ -23,10 +23,10 @@ void					parce_r(char *line, t_cub *cub)
 		r = ft_split(ft_strchr(line, 'R') + 1, ' ');
 		if ((r[2]) || !r[0] || !r[1])
 			cub_error("Error! Not valide 'R'\n", cub, FD_TEX);
-		if (ft_strlen(r[0]) > 10 || ft_strlen(r[1]) > 10)
-			cub_error("Error! Very big 'R'\n", cub, FD_TEX);
 		cub->width = ft_atoi(r[0]);
 		cub->height = ft_atoi(r[1]);
+		cub->height = (ft_strlen(r[0]) > 4) ? 1440 : cub->height;
+		cub->height = (ft_strlen(r[1]) > 4) ? 2560 : cub->height;
 		free_array(r);
 		if (cub->width <= 0 || cub->height <= 0)
 			cub_error("Error! Not valide 'R'\n", cub, FD_TEX);

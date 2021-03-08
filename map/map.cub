@@ -1,16 +1,14 @@
-R 324234 пизда
+R 1 1          
 
 NO texture/cyber.xpm
 SO texture/lava.xpm
 WE texture/green.xpm
 EA texture/mine.xpm
 S texture/64cat.xpm
-
 C   213, 100, 100
-F   150, 31, 150
+F   150, 31, 150       
 
-
-11111
+11111              
 10001
 10S01
 10001

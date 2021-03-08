@@ -35,14 +35,14 @@ void					cub_error(char *error, t_cub *cub, int code)
 		close(cub->fd);
 		cub_free_textures(cub);
 	}
-	exit (0);
+	exit(0);
 }
 
-int					free_all_and_exit(t_cub *cub)
+int						free_all_and_exit(t_cub *cub)
 {
 	cub_free_mlx(cub);
 	cub_free_textures(cub);
 	cub->fd = 0;
-	exit (0);
+	exit(0);
 	return (0);
 }

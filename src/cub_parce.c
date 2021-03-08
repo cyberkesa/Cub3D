@@ -99,5 +99,5 @@ void					general_parce(t_cub *cub)
 	free(line);
 	if (cub->flags.parce_map_start == 0)
 		cub_error("Error! Where map?\n", cub, FD_TEX);
-	close (cub->fd);
+	close(cub->fd);
 }

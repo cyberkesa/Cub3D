@@ -1,0 +1,14 @@
+R 4294967 4294967
+
+NO ./texture/64cat.xpm
+SO ./texture/64cat.xpm
+WE ./texture/64cat.xpm
+EA ./texture/64cat.xpm
+S ./texture/64cat.xpm
+
+C 255, 50, 150
+F 255, 0, 150
+
+111
+1N1
+111

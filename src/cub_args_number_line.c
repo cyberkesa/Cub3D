@@ -63,7 +63,6 @@ void					parce_number_line(t_cub *cub)
 	free(line);
 }
 
-
 int						cub_args_and_fd(t_cub *cub, int argc, char **argv)
 {
 	int					fd;

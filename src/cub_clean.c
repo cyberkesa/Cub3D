@@ -59,13 +59,3 @@ void					cub_free_textures(t_cub *cub)
 			i++;
 		}
 }
-
-void					free_array(char **r)
-{
-	size_t				i;
-
-	i = 0;
-	while (r[i])
-		free(r[i++]);
-	free(r);
-}

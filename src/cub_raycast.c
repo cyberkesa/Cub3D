@@ -45,25 +45,21 @@ void				ray_cast(t_cub *cub)
 {
 	register int	loop;
 	register int	new_draw_start;
+
 	press(cub);
 	loop = 0;
 	while (loop <= cub->width)
 	{
 		ray_math(cub, loop);
-		ray_step(cub);
-		ray_hit(cub);
-		ray_perp(cub);
-		ray_wall_x(cub);
-		set_side_texture(cub);
-		ray_start_end(cub);
 		new_draw_start = cub->draw_start;
 		while (new_draw_start < cub->draw_end)
 		{
 			cub->tex_y = (int)cub->tex_pos & (cub->tex[cub->t_id].width - 1);
 			cub->tex_pos += cub->step;
-			int pixel_num = cub->tex[cub->t_id].width * cub->tex_y + cub->tex_x;
-			cub->ray.color = ((int *)cub->tex[cub->t_id].image_data)[pixel_num];
-			set_pixel(cub, loop, new_draw_start++, cub->ray.color);
+			set_pixel(cub, loop, new_draw_start,
+			((int *)cub->tex[cub->t_id].image_data)
+			[cub->tex[cub->t_id].width * cub->tex_y + cub->tex_x]);
+			new_draw_start++;
 		}
 		cub->perp_for_sprites[loop] = cub->ray.perp_wall;
 		loop++;

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub.h"
 
 void					check_player_pos(t_cub *cub)
@@ -60,4 +59,3 @@ void					check_map_validate(t_cub *cub)
 		x++;
 	}
 }
-

@@ -12,6 +12,16 @@
 
 #include "cub.h"
 
+void					free_array(char **r)
+{
+	size_t				i;
+
+	i = 0;
+	while (r[i])
+		free(r[i++]);
+	free(r);
+}
+
 void					null_all_pointer(t_cub *cub)
 {
 	int					i;

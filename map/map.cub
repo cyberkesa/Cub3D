@@ -1,16 +1,17 @@
-R 3432 1
+R 99999 1
 
-NO texture/noise.xpm
-SO texture/noise.xpm
-WE texture/noise.xpm
+NO texture/cyber.xpm
+SO texture/lava.xpm
+WE texture/green.xpm
 EA texture/mine.xpm
 S texture/64cat.xpm
 
-C   100, 100, 100
-F   150, 150, 150
+C   213, 100, 100
+F   150, 31, 150
 
 
-1111111
-1020001
-1S00201
-1111111
+11111
+10001
+10S01
+10001
+11111

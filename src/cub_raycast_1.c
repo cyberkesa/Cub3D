@@ -67,6 +67,12 @@ void						ray_math(t_cub *cub, int loop)
 	cub->ray.y_int = (int)cub->plr.y;
 	cub->ray.delta_dist_x = fabs(1 / cub->ray.ray_dir_x);
 	cub->ray.delta_dist_y = fabs(1 / cub->ray.ray_dir_y);
+	ray_step(cub);
+	ray_hit(cub);
+	ray_perp(cub);
+	ray_wall_x(cub);
+	set_side_texture(cub);
+	ray_start_end(cub);
 }
 
 void						ray_hit(t_cub *cub)

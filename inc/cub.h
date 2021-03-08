@@ -22,7 +22,6 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <math.h>
-# include "mlx.h"
 # include <mlx.h>
 
 # define NO_FREE 1
@@ -74,7 +73,6 @@ typedef struct				s_flags
 	bool					tex_we;
 	bool					tex_s;
 	bool					resolution;
-
 	bool					perp_allocate;
 	bool					sprite_allocate;
 	bool					map_allocate;
@@ -118,7 +116,6 @@ typedef	struct				s_spr
 	int						d;
 	int						y;
 	int						stripe;
-
 }							t_spr;
 
 typedef	struct				s_ray
@@ -193,6 +190,9 @@ typedef	struct				s_cub
 	int						draw_end;
 	int						tex_x;
 	int						tex_y;
+	int						r;
+	int						g;
+	int						b;
 }							t_cub;
 
 int							main(int argc, char **argv);
@@ -276,11 +276,12 @@ int							cub_args_and_fd(t_cub *cub, int argc, char **argv);
 void						cub_error(char *error, t_cub *cub, int code);
 void						re_map_tex_fd_color(t_cub *cub);
 int							free_all_and_exit(t_cub *cub);
-
 void						cub_free_textures(t_cub *cub);
 void						cub_free_sprites(t_cub *cub);
 void						cub_free_mlx(t_cub *cub);
 void						cub_free_map(t_cub *cub);
 void						cub_free_perp(t_cub *cub);
+void						colors_check(t_cub *cub, char *red,
+							char *green, char *blue);
 
 #endif

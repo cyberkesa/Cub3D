@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub.h"
 
 void					make_texture_pixel_array(t_cub *cub, int num)

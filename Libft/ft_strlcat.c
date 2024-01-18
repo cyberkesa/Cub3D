@@ -25,7 +25,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 	max = dstsize - ft_strlen(dst);
 	if (dstsize != 0 && lendst < dstsize)
 	{
-		while (--max && lensrc != 0 && *src && dst != '\0')
+		while (--max && lensrc != 0 && *src && dst != NULL)
 		{
 			dst[i] = *src++;
 			i++;

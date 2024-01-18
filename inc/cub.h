@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <math.h>
-# include <mlx.h>
+# include <../minilibx-linux-master/mlx.h>
 
 # define NO_FREE 1
 # define TEX 4
